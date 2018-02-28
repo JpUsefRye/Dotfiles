@@ -24,5 +24,6 @@ set smarttab
 
 set backspace=2
 
+set mouse=a
 set nu
 set ruler
