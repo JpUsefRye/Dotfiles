@@ -1,15 +1,3 @@
-call plug#begin('~/.vim/plugged')
-
-Plug 'jacoborus/tender.vim'
-
-call plug#end()
-
-
-if (has("termguicolors"))
- set termguicolors
-endif
-
-
 colorscheme tender
 syntax enable
 
