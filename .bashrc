@@ -9,13 +9,11 @@ MYNAME=JpUsefRye
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-if [ "$color_prompt" = yes ]; then
-    PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\342\234\227\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]λ\[\e[0m\] "
+# ┌─[bl4ckvghost@jpusefrye]─[~]
+# └──╼ λ 
 
-else
-    PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\342\234\227\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]λ\[\e[0m\] "
+PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\342\234\227\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]λ\[\e[0m\] "
 
-fi
 unset color_prompt force_color_prompt
 
 
@@ -45,12 +43,13 @@ alias vi="vim" # Fix vi issue
 alias mapscii="telnet mapscii.me"
 alias open="xdg-open"
 alias ll="ls -l"
+alias grep="grep --color=auto"
 
 # Terminal Interface
 figlet "$MYNAME"
 fortune | cowsay -f moose
-echo -ne "${lightgreen}Today is:\t\t${red}" `date`; echo ""<<< Today
-echo -e "${lightgreen}Kernel Information: \t${red}" `uname -smr`
+echo -ne "Today is:\t\t" `date`; echo ""<<< Today
+echo -e "Kernel Information: \t" `uname -smr`
 
 # Some PATH Variables and exports
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
