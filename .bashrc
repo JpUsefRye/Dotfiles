@@ -40,7 +40,6 @@ fi
 
 alias hello="echo 'Not you again'"
 alias vi="vim" # Fix vi issue
-alias mapscii="telnet mapscii.me"
 alias open="xdg-open"
 alias ll="ls -l"
 alias grep="grep --color=auto"
