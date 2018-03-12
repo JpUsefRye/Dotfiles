@@ -3,7 +3,12 @@
 Running on Arch Linux
 
 # Screen Shot
-![screenshot](terminal.png)
+
+### Terminal
+![Terminal](terminal.png)
+
+### Vim
+![Vim](vim.png)
 
 #### Required
 
