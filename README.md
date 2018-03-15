@@ -2,10 +2,15 @@
 
 Running on Arch Linux
 
+tested on bash with gnome terminal
+
 # Screen Shot
 
 ### Terminal
 ![Terminal](terminal.png)
+
+### Another pic of the terminal
+![Terminal](terminal2.png)
 
 ### Vim
 ![Vim](vim.png)
