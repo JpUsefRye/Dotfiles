@@ -15,6 +15,9 @@ tested on bash with gnome terminal
 ### Vim
 ![Vim](vim.png)
 
+### Another pic of vim
+![Vim](vim2.png)
+
 #### Required
 
 - cowsay
