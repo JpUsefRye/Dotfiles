@@ -9,7 +9,7 @@ MYNAME=JpUsefRye
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# ┌─[bl4ckvghost@jpusefrye]─[~]
+# ┌─[User@Host]─[~]
 # └──╼ λ 
 
 PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\342\234\227\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]λ\[\e[0m\] "
@@ -144,10 +144,39 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
 fi
 
-alias hello="echo 'Not you again'"
-alias vi="vim" # Fix vi issue
-alias open="xdg-open"
+# AUTOCOLOR
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# LS stuff
+alias ls="ls --color=auto"
 alias ll="ls -l"
+alias lr='ls -R'
+alias la='ll -A'
+alias lm='la | less'       # la but in 'less'
+alias lx='ls -lXB'         # Sort by extension
+alias lk='ls -lSr'         # Sort by size, biggest last
+alias lc='ls -ltcr'        # Sort by and show change time, most recent last
+alias lu='ls -ltur'        # Sort by and show access time, most recent last
+alias lt='ls -ltr'         # Sort by date, most recent last
+
+# MODIFIED COMMANDS
+alias df='df -h'
+alias du='du -c -h'
+alias free='free -m'                # show sizes in MB
+alias grep='grep --color=auto'
+alias mkdir='mkdir -p -v'
+alias more='less'
+alias nano='nano -w'
+alias ping='ping -c 5'
+
+# Other
+alias hello="echo 'Not you again'"
+alias vi="vim"
+alias open="xdg-open"
 alias grep="grep --color=auto"
 
 # Terminal Interface
@@ -155,6 +184,44 @@ figlet "$MYNAME"
 fortune | cowsay -f moose
 echo -ne "Today is:\t\t" `date`; echo ""<<< Today
 echo -e "Kernel Information: \t" `uname -smr`
+
+
+# Sometimes i use this or not?...
+Black='\033[0;30m'        # Black
+Red='\033[0;31m'          # Red
+Green='\033[0;32m'        # Green
+Yellow='\033[0;33m'       # Yellow
+Blue='\033[0;34m'         # Blue
+Purple='\033[0;35m'       # Purple
+Cyan='\033[0;36m'         # Cyan
+White='\033[0;37m'        # White
+
+# Bold
+BBlack='\033[1;30m'       # Black
+BRed='\033[1;31m'         # Red
+BGreen='\033[1;32m'       # Green
+BYellow='\033[1;33m'      # Yellow
+BBlue='\033[1;34m'        # Blue
+BPurple='\033[1;35m'      # Purple
+BCyan='\033[1;36m'        # Cyan
+BWhite='\033[1;37m'       # White
+
+# Background
+On_Black='\033[40m'       # Black
+On_Red='\033[41m'         # Red
+On_Green='\033[42m'       # Green
+On_Yellow='\033[43m'      # Yellow
+On_Blue='\033[44m'        # Blue
+On_Purple='\033[45m'      # Purple
+On_Cyan='\033[46m'        # Cyan
+On_White='\033[47m'       # White
+
+NC="\033[m"               # Color Reset
+CR="$(echo -ne '\r')"
+LF="$(echo -ne '\n')"
+TAB="$(echo -ne '\t')"
+ESC="$(echo -ne '\033')"
+
 
 # Some PATH Variables and exports
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
