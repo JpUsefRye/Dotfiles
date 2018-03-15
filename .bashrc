@@ -177,7 +177,6 @@ alias ping='ping -c 5'
 alias hello="echo 'Not you again'"
 alias vi="vim"
 alias open="xdg-open"
-alias grep="grep --color=auto"
 
 # Terminal Interface
 figlet "$MYNAME"
