@@ -144,14 +144,35 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
 fi
 
+##########################################################
+# Comment PACMAN ALIASES if you are not using arch linux #
+##########################################################
+
+# PACMAN ALIASES
+alias pacupg='pacman -Syu' # Synchronize with repositories and then upgrade packages that are out of date
+alias pacupd='pacman -Sy'  # Refresh of all package lists after updating /etc/pacman.d/mirrorlist
+alias pacin='pacman -S'    # Install specific package(s) from the repositories
+alias pacinu='pacman -U'   # Install specific local package(s)
+alias pacre='pacman -R'    # Remove the specified package(s), retaining its configuration(s) and required dependencies
+alias pacun='pacman -Rcsn' # Remove the specified package(s), its configuration(s) and unneeded dependencies
+alias pacinfo='pacman -Si' # Display information about a given package in the repositories
+alias pacse='pacman -Ss'   # Search for package(s) in the repositories
+
+alias pacupa='pacman -Sy && sudo abs' # Update and refresh the local package and ABS databases against repositories
+alias pacind='pacman -S --asdeps'     # Install given package(s) as dependencies of another package
+alias pacclean="pacman -Sc"           # Delete all not currently installed package files
+alias pacmake="makepkg -fcsi"         # Make package from PKGBUILD file in current directory
+# END PACMAN ALIASES
+
 # AUTOCOLOR
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+# END AUTOCOLOR
 
-# LS stuff
+# LS STUFF
 alias ls="ls --color=auto"
 alias ll="ls -l"
 alias lr='ls -R'
@@ -162,6 +183,7 @@ alias lk='ls -lSr'         # Sort by size, biggest last
 alias lc='ls -ltcr'        # Sort by and show change time, most recent last
 alias lu='ls -ltur'        # Sort by and show access time, most recent last
 alias lt='ls -ltr'         # Sort by date, most recent last
+# END LS STUFF
 
 # MODIFIED COMMANDS
 alias df='df -h'
@@ -169,21 +191,23 @@ alias du='du -c -h'
 alias free='free -m'                # show sizes in MB
 alias grep='grep --color=auto'
 alias mkdir='mkdir -p -v'
-alias more='less'
 alias nano='nano -w'
 alias ping='ping -c 5'
+# END MODIFIED COMMANDS
 
-# Other
+# OTHER
 alias hello="echo 'Not you again'"
 alias vi="vim"
 alias open="xdg-open"
+alias grep="grep --color=auto"
+# END Other
 
 # Terminal Interface
 figlet "$MYNAME"
 fortune | cowsay -f moose
 echo -ne "Today is:\t\t" `date`; echo ""<<< Today
 echo -e "Kernel Information: \t" `uname -smr`
-
+# END Terminal Interface
 
 # Sometimes i use this or not?...
 Black='\033[0;30m'        # Black
@@ -225,6 +249,7 @@ ESC="$(echo -ne '\033')"
 # Some PATH Variables and exports
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 PATH="$HOME/.node_modules/bin:$PATH"
+export QT_X11_NO_MITSHM=1 # fixes the issue when opening qt app with sudo
 export PATH="$PATH:$HOME/go/bin"
 export npm_config_prefix=~/.node_modules
 export GEM_HOME=$HOME/.gem
