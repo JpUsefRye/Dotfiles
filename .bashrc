@@ -172,6 +172,12 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 # END AUTOCOLOR
 
+# BASH OPTIONS
+shopt -s cdspell         # Correct cd typos
+shopt -s checkwinsize    # Update windows size on command
+shopt -s extglob         # Extended pattern
+# END BASH OPTIONS
+
 # LS STUFF
 alias ls="ls --color=auto"
 alias ll="ls -l"
