@@ -4,6 +4,9 @@ Running on Arch Linux
 
 tested on bash with gnome terminal
 
+**NOTE**: read the comments in the `.bashrc` carefully.
+if you have any problem, submit an issue or pull requests.
+
 # Screen Shot
 
 ### Terminal
