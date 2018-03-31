@@ -1,7 +1,7 @@
 " Maintainer: Youssef Hesham
 " DESCRIPTION: My own vim configuration.
 
-set nocompatible                " i don't know what is that doing but it works well 
+set nocompatible                " i don't know what is that doing but it works well
 set encoding=utf-8              " Set default encoding to UTF-8
 
 try                             " You Must Have Tender Color Scheme.
@@ -57,6 +57,10 @@ set autowrite                   " Automatically :w before running commands
 set showmode                    " show current mode down the bottom
 set autoread
 
+" Enable autocompletion:
+set wildmode=longest,list,full
+set wildmenu
+
 " I DON'T UNDERSTAND VIM SCRIPT
 
 if $COLORTERM == 'gnome-terminal'
@@ -97,6 +101,31 @@ noremap <C-a> ggVG<CR>
 " ( by changing 'h' in the command above to other lower case letter ) that you don't use.
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
+
+" Shortcutting split navigation, saving a keypress:
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Replace all is aliased to S.
+nnoremap S :%s//g<Left><Left>
+
+" Spell-check set to F6:
+map <F6> :setlocal spell! spelllang=en_us,es<CR>
+
+" Use urlview to choose and open a url:
+noremap <leader>u :w<Home>silent <End> !urlview<CR>
+
+" Automatically deletes all tralling whitespace on save.
+autocmd BufWritePre * %s/\s\+$//e
+
+
+" Navigating with guides
+inoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
+noremap <Space><Tab> <Esc>/<++><Enter>"_c4l
+map <Space><Tab> <Esc>/<++><Enter>"_c4l
+inoremap ;gui <++>
 
 augroup checktime
     au!
@@ -154,3 +183,4 @@ set directory=~/.vim/swap/
 
 set splitright                  " Puts new vertical split windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
+
