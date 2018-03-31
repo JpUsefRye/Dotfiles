@@ -22,6 +22,7 @@ set incsearch                   " Find the next match as we type the search
 set hlsearch                    " Highlight searches by default
 set ignorecase                  " Ignore case when searching...
 set smartcase                   " ...unless we type a capital
+set softtabstop=4
 
 set autoindent
 set smartindent
@@ -41,7 +42,7 @@ set clipboard=unnamedplus
 
 set expandtab
 set smarttab
-set backspace=2
+set backspace=indent,eol,start
 
 if has('mouse')
   set mouse=a
@@ -138,6 +139,7 @@ set magic                       " Does some magic ;-) Newline characters...
 set spell                       " Spell checking is on by default.
 set number                      " Enable line numbering
 set ttyfast                     " The current terminal is a fast terminal so
+set laststatus=2
 
 filetype on                     " Enable file type detection
 filetype indent on              " Enable file type-specific indenting
