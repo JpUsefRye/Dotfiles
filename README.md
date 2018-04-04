@@ -9,17 +9,7 @@ if you have any problem, submit an issue or pull requests.
 
 # Screen Shot
 
-### Terminal
-![Terminal](terminal.png)
-
-### Another pic of the terminal
-![Terminal](terminal2.png)
-
-### Vim
-![Vim](vim.png)
-
-### Another pic of vim
-![Vim](vim2.png)
+you can find screen shots at [Screenshots.md](Screenshots.md)
 
 #### Required
 
