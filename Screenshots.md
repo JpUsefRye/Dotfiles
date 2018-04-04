@@ -8,9 +8,11 @@ Another vim screen shot
 
 ![vim2](images/vim2.png)
 
+![vim3](images/keycomplete.png)
+
 Now Lets move to the terminal
 
-![terminal1](images/terminal1.png)
+![terminal1](images/terminal.png)
 
 Another terminal screen shot
 
