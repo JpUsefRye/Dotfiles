@@ -9,7 +9,7 @@ if you have any problem, submit an issue or pull requests.
 
 # Screen Shot
 
-you can find screen shots at [Screenshots.md](Screenshots.md)
+you can find screen shots at [screenshots.md](Screenshots.md)
 
 #### Required
 
@@ -22,26 +22,6 @@ you can find screen shots at [Screenshots.md](Screenshots.md)
 ### Installation
 
 ```bash
-# Download the Dotfiles
-git clone https://github.com/JpUsefRye/Dotfiles.git
-cd Dotfiles
-# make a backup file
-cp ~/.bashrc ~/.bashrc.bak
-# apply the .bashrc file
-cp .bashrc ~/.bashrc
-
-# Apply to Vim
-
-# make a backup
-cp ~/.vimrc ~/.vimrc.bak
-
-# install vimrc
-cp .vimrc ~/.vimrc
-
-# install the color scheme
-# if you dont have .vim/colors folder create it
-# then copy the tender.vim file to .vim/colors
-cp tender.vim ~/.vim/colors
-
-# Done
+chmod +x install.sh
+./install.sh
 ```
