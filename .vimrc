@@ -31,8 +31,7 @@ set shiftwidth=4
 set copyindent                  " copy the previous indentation on auto indenting
 
 set hidden
-set cursorline
-set numberwidth=5
+" set cursorline
 set fileformats=unix,dos,mac   " support all three, in this order
 
 set foldmethod=syntax
@@ -58,9 +57,8 @@ set showmode                    " show current mode down the bottom
 set autoread
 
 " Enable autocompletion:
+" set wildmode
 set wildmode=longest,list,full
-set wildmenu
-
 " I DON'T UNDERSTAND VIM SCRIPT
 
 if $COLORTERM == 'gnome-terminal'
@@ -72,7 +70,7 @@ if $COLORTERM == 'truecolor'
 endif
 
 if has("gui_running")
-i    " setup for gui
+    " setup for gui
     set guioptions-=r  " no scrollbar on the right
     set guioptions-=l  " no scrollbar on the left
     set guioptions-=m  " no menu
@@ -120,12 +118,18 @@ noremap <leader>u :w<Home>silent <End> !urlview<CR>
 " Automatically deletes all tralling whitespace on save.
 autocmd BufWritePre * %s/\s\+$//e
 
-
 " Navigating with guides
 inoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
 noremap <Space><Tab> <Esc>/<++><Enter>"_c4l
 map <Space><Tab> <Esc>/<++><Enter>"_c4l
 inoremap ;gui <++>
+
+" Clear highlighting on escape in normal mode
+nnoremap <esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
+
+" Ctrl+H opens hex edit mode
+nnoremap <c-h> :%!xxd<cr>
 
 augroup checktime
     au!
@@ -141,7 +145,7 @@ augroup checktime
     endif
 augroup END
 
-
+" Auto completion function
 function! Smart_TabComplete()
   let line = getline('.')                         " current line
 
@@ -162,7 +166,6 @@ function! Smart_TabComplete()
     return "\<C-X>\<C-O>"                         " plugin matching
   endif
 endfunction
-
 
 set magic                       " Does some magic ;-) Newline characters...
 set spell                       " Spell checking is on by default.
