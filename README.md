@@ -11,11 +11,11 @@ you can find screen shots at [screenshots.md](Screenshots.md)
 
 
 # what inside this repo
-in this repo there is my personal vim configuration that i use to code.
+in this repo there is my personal vim configuration that i use to code ([.vimrc](.vimrc)).
 
-there is my [.gdbinit](.gdbinit) file that i used in debugging, user interface from [GDB-Dashboard](https://github.com/cyrus-and/gdb-dashboard) extension and the configurations is by me and some people.
+there is my [.gdbinit](.gdbinit) file that i use in debugging and reverse engineering, user interface from [GDB-Dashboard](https://github.com/cyrus-and/gdb-dashboard) extension and the configurations is by me and some people.
 
-my nice .bashrc for my nice terminal.
+my nice [.bashrc](.bashrc) for my nice terminal.
 
 #### Required
 
