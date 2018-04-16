@@ -3517,6 +3517,27 @@ document 64bits
 Set gdb to work with 64bits binaries
 end
 
+
+define stack
+    if $argc == 0
+        info stack
+    end
+    if $argc == 1
+        info stack $arg0
+    end
+    if $argc > 1
+        help stack
+    end
+end
+document stack
+Syntax: stack <COUNT>
+| Print backtrace of the call stack, or innermost COUNT frames.
+end
+
+
+
+
+
 # Start ------------------------------------------------------------------------
 
 python Dashboard.start()
