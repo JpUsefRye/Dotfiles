@@ -2935,6 +2935,587 @@ document dumpjump
 Display if conditional jump will be taken or not
 end
 
+define cfc
+    if ($eflags & 1)
+        set $eflags = $eflags&~0x1
+    else
+        set $eflags = $eflags|0x1
+    end
+end
+document cfc
+Change Carry Flag.
+end
+
+
+define cfp
+    if (($eflags >> 2) & 1)
+        set $eflags = $eflags&~0x4
+    else
+        set $eflags = $eflags|0x4
+    end
+end
+document cfp
+Change Parity Flag.
+end
+
+
+define cfa
+    if (($eflags >> 4) & 1)
+        set $eflags = $eflags&~0x10
+    else
+        set $eflags = $eflags|0x10
+    end
+end
+document cfa
+Change Auxiliary Carry Flag.
+end
+
+
+define cfz
+    if (($eflags >> 6) & 1)
+        set $eflags = $eflags&~0x40
+    else
+        set $eflags = $eflags|0x40
+    end
+end
+document cfz
+Change Zero Flag.
+end
+
+
+define cfs
+    if (($eflags >> 7) & 1)
+        set $eflags = $eflags&~0x80
+    else
+        set $eflags = $eflags|0x80
+    end
+end
+document cfs
+Change Sign Flag.
+end
+
+
+define cft
+    if (($eflags >>8) & 1)
+        set $eflags = $eflags&~0x100
+    else
+        set $eflags = $eflags|0x100
+    end
+end
+document cft
+Change Trap Flag.
+end
+
+
+define cfi
+    if (($eflags >> 9) & 1)
+        set $eflags = $eflags&~0x200
+    else
+        set $eflags = $eflags|0x200
+    end
+end
+document cfi
+Change Interrupt Flag.
+Only privileged applications (usually the OS kernel) may modify IF.
+This only applies to protected mode (real mode code may always modify IF).
+end
+
+
+define cfd
+    if (($eflags >>0xA) & 1)
+        set $eflags = $eflags&~0x400
+    else
+        set $eflags = $eflags|0x400
+    end
+end
+document cfd
+Change Direction Flag.
+end
+
+
+define cfo
+    if (($eflags >> 0xB) & 1)
+        set $eflags = $eflags&~0x800
+    else
+        set $eflags = $eflags|0x800
+    end
+end
+document cfo
+Change Overflow Flag.
+end
+
+
+
+define null
+    if ( $argc >2 || $argc == 0)
+        help null
+    end
+
+    if ($argc == 1)
+	set *(unsigned char *)$arg0 = 0
+    else
+	set $addr = $arg0
+	while ($addr < $arg1)
+	        set *(unsigned char *)$addr = 0
+		set $addr = $addr +1
+	end
+    end
+end
+document null
+Usage: null ADDR1 [ADDR2]
+Patch a single byte at address ADDR1 to NULL (0x00), or a series of bytes between ADDR1 and ADDR2.
+
+end
+
+
+define int3
+    if $argc != 1
+        help int3
+    else
+        set *(unsigned char *)$arg0 = 0xCC
+    end
+end
+document int3
+Patch byte at address ADDR to an INT3 (0xCC) instruction.
+Usage: int3 ADDR
+end
+
+
+define print_insn_type
+    if $argc != 1
+        help print_insn_type
+    else
+        if ($arg0 < 0 || $arg0 > 5)
+            printf "UNDEFINED/WRONG VALUE"
+        end
+        if ($arg0 == 0)
+            printf "UNKNOWN"
+        end
+        if ($arg0 == 1)
+            printf "JMP"
+        end
+        if ($arg0 == 2)
+            printf "JCC"
+        end
+        if ($arg0 == 3)
+            printf "CALL"
+        end
+        if ($arg0 == 4)
+            printf "RET"
+        end
+        if ($arg0 == 5)
+            printf "INT"
+        end
+    end
+end
+document print_insn_type
+Print human-readable mnemonic for the instruction type (usually $INSN_TYPE).
+Usage: print_insn_type INSN_TYPE_NUMBER
+end
+
+
+define get_insn_type
+    if $argc != 1
+        help get_insn_type
+    else
+        set $INSN_TYPE = 0
+        set $_byte1 = *(unsigned char *)$arg0
+        if ($_byte1 == 0x9A || $_byte1 == 0xE8)
+            # "call"
+            set $INSN_TYPE = 3
+        end
+        if ($_byte1 >= 0xE9 && $_byte1 <= 0xEB)
+            # "jmp"
+            set $INSN_TYPE = 1
+        end
+        if ($_byte1 >= 0x70 && $_byte1 <= 0x7F)
+            # "jcc"
+            set $INSN_TYPE = 2
+        end
+        if ($_byte1 >= 0xE0 && $_byte1 <= 0xE3 )
+            # "jcc"
+            set $INSN_TYPE = 2
+        end
+        if ($_byte1 == 0xC2 || $_byte1 == 0xC3 || $_byte1 == 0xCA || \
+            $_byte1 == 0xCB || $_byte1 == 0xCF)
+            # "ret"
+            set $INSN_TYPE = 4
+        end
+        if ($_byte1 >= 0xCC && $_byte1 <= 0xCE)
+            # "int"
+            set $INSN_TYPE = 5
+        end
+        if ($_byte1 == 0x0F )
+            # two-byte opcode
+            set $_byte2 = *(unsigned char *)($arg0 + 1)
+            if ($_byte2 >= 0x80 && $_byte2 <= 0x8F)
+                # "jcc"
+                set $INSN_TYPE = 2
+            end
+        end
+        if ($_byte1 == 0xFF)
+            # opcode extension
+            set $_byte2 = *(unsigned char *)($arg0 + 1)
+            set $_opext = ($_byte2 & 0x38)
+            if ($_opext == 0x10 || $_opext == 0x18)
+                # "call"
+                set $INSN_TYPE = 3
+            end
+            if ($_opext == 0x20 || $_opext == 0x28)
+                # "jmp"
+                set $INSN_TYPE = 1
+            end
+        end
+    end
+end
+document get_insn_type
+Recognize instruction type at address ADDR.
+Take address ADDR and set the global $INSN_TYPE variable to
+0, 1, 2, 3, 4, 5 if the instruction at that address is
+unknown, a jump, a conditional jump, a call, a return, or an interrupt.
+Usage: get_insn_type ADDR
+end
+
+
+define step_to_call
+    set $_saved_ctx = $SHOW_CONTEXT
+    set $SHOW_CONTEXT = 0
+    set $SHOW_NEST_INSN = 0
+
+    set logging file /dev/null
+    set logging redirect on
+    set logging on
+
+    set $_cont = 1
+    while ($_cont > 0)
+        stepi
+        get_insn_type $pc
+        if ($INSN_TYPE == 3)
+            set $_cont = 0
+        end
+    end
+
+    set logging off
+
+    if ($_saved_ctx > 0)
+        context
+    end
+
+    set $SHOW_CONTEXT = $_saved_ctx
+    set $SHOW_NEST_INSN = 0
+
+    set logging file ~/gdb.txt
+    set logging redirect off
+    set logging on
+
+    printf "step_to_call command stopped at:\n  "
+    x/i $pc
+    printf "\n"
+    set logging off
+
+end
+document step_to_call
+Single step until a call instruction is found.
+Stop before the call is taken.
+Log is written into the file ~/gdb.txt.
+end
+
+
+define trace_calls
+
+    printf "Tracing...please wait...\n"
+
+    set $_saved_ctx = $SHOW_CONTEXT
+    set $SHOW_CONTEXT = 0
+    set $SHOW_NEST_INSN = 0
+    set $_nest = 1
+    set listsize 0
+
+    set logging overwrite on
+    set logging file ~/gdb_trace_calls.txt
+    set logging on
+    set logging off
+    set logging overwrite off
+
+    while ($_nest > 0)
+        get_insn_type $pc
+        # handle nesting
+        if ($INSN_TYPE == 3)
+            set $_nest = $_nest + 1
+        else
+            if ($INSN_TYPE == 4)
+                set $_nest = $_nest - 1
+            end
+        end
+        # if a call, print it
+        if ($INSN_TYPE == 3)
+            set logging file ~/gdb_trace_calls.txt
+            set logging redirect off
+            set logging on
+
+            set $x = $_nest - 2
+            while ($x > 0)
+                printf "\t"
+                set $x = $x - 1
+            end
+            x/i $pc
+        end
+
+        set logging off
+        set logging file /dev/null
+        set logging redirect on
+        set logging on
+        stepi
+        set logging redirect off
+        set logging off
+    end
+
+    set $SHOW_CONTEXT = $_saved_ctx
+    set $SHOW_NEST_INSN = 0
+
+    printf "Done, check ~/gdb_trace_calls.txt\n"
+end
+document trace_calls
+Create a runtime trace of the calls made by target.
+Log overwrites(!) the file ~/gdb_trace_calls.txt.
+end
+
+
+define trace_run
+
+    printf "Tracing...please wait...\n"
+
+    set $_saved_ctx = $SHOW_CONTEXT
+    set $SHOW_CONTEXT = 0
+    set $SHOW_NEST_INSN = 1
+    set logging overwrite on
+    set logging file ~/gdb_trace_run.txt
+    set logging redirect on
+    set logging on
+    set $_nest = 1
+
+    while ( $_nest > 0 )
+
+        get_insn_type $pc
+        # jmp, jcc, or cll
+        if ($INSN_TYPE == 3)
+            set $_nest = $_nest + 1
+        else
+            # ret
+            if ($INSN_TYPE == 4)
+                set $_nest = $_nest - 1
+            end
+        end
+        stepi
+    end
+
+    printf "\n"
+
+    set $SHOW_CONTEXT = $_saved_ctx
+    set $SHOW_NEST_INSN = 0
+    set logging redirect off
+    set logging off
+
+    # clean up trace file
+    shell  grep -v ' at ' ~/gdb_trace_run.txt > ~/gdb_trace_run.1
+    shell  grep -v ' in ' ~/gdb_trace_run.1 > ~/gdb_trace_run.txt
+    shell  rm -f ~/gdb_trace_run.1
+    printf "Done, check ~/gdb_trace_run.txt\n"
+end
+document trace_run
+Create a runtime trace of target.
+Log overwrites(!) the file ~/gdb_trace_run.txt.
+end
+
+
+
+define tips
+    printf "Tip Topic Commands:\n"
+    printf "\ttip_display : Automatically display values on each break\n"
+    printf "\ttip_patch   : Patching binaries\n"
+    printf "\ttip_strip   : Dealing with stripped binaries\n"
+    printf "\ttip_syntax  : AT&T vs Intel syntax\n"
+end
+document tips
+Provide a list of tips from users on various topics.
+end
+
+
+define tip_patch
+    printf "\n"
+    printf "                   PATCHING MEMORY\n"
+    printf "Any address can be patched using the 'set' command:\n"
+    printf "\t`set ADDR = VALUE` \te.g. `set *0x8049D6E = 0x90`\n"
+    printf "\n"
+    printf "                 PATCHING BINARY FILES\n"
+    printf "Use `set write` in order to patch the target executable\n"
+    printf "directly, instead of just patching memory\n"
+    printf "\t`set write on` \t`set write off`\n"
+    printf "Note that this means any patches to the code or data segments\n"
+    printf "will be written to the executable file\n"
+    printf "When either of these commands has been issued,\n"
+    printf "the file must be reloaded.\n"
+    printf "\n"
+end
+document tip_patch
+Tips on patching memory and binary files.
+end
+
+
+define tip_strip
+    printf "\n"
+    printf "             STOPPING BINARIES AT ENTRY POINT\n"
+    printf "Stripped binaries have no symbols, and are therefore tough to\n"
+    printf "start automatically. To debug a stripped binary, use\n"
+    printf "\tinfo file\n"
+    printf "to get the entry point of the file\n"
+    printf "The first few lines of output will look like this:\n"
+    printf "\tSymbols from '/tmp/a.out'\n"
+    printf "\tLocal exec file:\n"
+    printf "\t        `/tmp/a.out', file type elf32-i386.\n"
+    printf "\t        Entry point: 0x80482e0\n"
+    printf "Use this entry point to set an entry point:\n"
+    printf "\t`tbreak *0x80482e0`\n"
+    printf "The breakpoint will delete itself after the program stops as\n"
+    printf "the entry point\n"
+    printf "\n"
+end
+document tip_strip
+Tips on dealing with stripped binaries.
+end
+
+
+define tip_syntax
+    printf "\n"
+    printf "\t    INTEL SYNTAX                        AT&T SYNTAX\n"
+    printf "\tmnemonic dest, src, imm            mnemonic src, dest, imm\n" 
+    printf "\t[base+index*scale+disp]            disp(base, index, scale)\n"
+    printf "\tregister:      eax                 register:      %%eax\n"
+    printf "\timmediate:     0xFF                immediate:     $0xFF\n"
+    printf "\tdereference:   [addr]              dereference:   addr(,1)\n"
+    printf "\tabsolute addr: addr                absolute addr: *addr\n"
+    printf "\tbyte insn:     mov byte ptr        byte insn:     movb\n"
+    printf "\tword insn:     mov word ptr        word insn:     movw\n"
+    printf "\tdword insn:    mov dword ptr       dword insn:    movd\n"
+    printf "\tfar call:      call far            far call:      lcall\n"
+    printf "\tfar jump:      jmp far             far jump:      ljmp\n"
+    printf "\n"
+    printf "Note that order of operands in reversed, and that AT&T syntax\n"
+    printf "requires that all instructions referencing memory operands \n"
+    printf "use an operand size suffix (b, w, d, q)\n"
+    printf "\n"
+end
+document tip_syntax
+Summary of Intel and AT&T syntax differences.
+end
+
+
+define tip_display
+    printf "\n"
+    printf "Any expression can be set to automatically be displayed every time\n"
+    printf "the target stops. The commands for this are:\n"
+    printf "\t`display expr'     : automatically display expression 'expr'\n"
+    printf "\t`display'          : show all displayed expressions\n"
+    printf "\t`undisplay num'    : turn off autodisplay for expression # 'num'\n"
+    printf "Examples:\n"
+    printf "\t`display/x *(int *)$esp`      : print top of stack\n"
+    printf "\t`display/x *(int *)($ebp+8)`  : print first parameter\n"
+    printf "\t`display (char *)$esi`        : print source string\n"
+    printf "\t`display (char *)$edi`        : print destination string\n"
+    printf "\n"
+end
+document tip_display
+Tips on automatically displaying values when a program stops.
+end
+
+# bunch of semi-useless commands
+
+# enable and disable shortcuts for stop-on-solib-events fantastic trick!
+define enablesolib
+	set stop-on-solib-events 1
+end
+document enablesolib
+Shortcut to enable stop-on-solib-events trick!
+end
+
+define disablesolib
+	set stop-on-solib-events 0
+end
+document disablesolib
+Shortcut to disable stop-on-solib-events trick!
+end
+
+# enable commands for different displays
+define enableobjectivec
+	set $SHOWOBJECTIVEC = 1
+end
+document enableobjectivec
+Enable display of objective-c information in the context window
+end
+
+define enablecpuregisters
+	set $SHOWCPUREGISTERS = 1
+end
+document enablecpuregisters
+Enable display of cpu registers in the context window
+end
+
+define enablestack
+	set $SHOWSTACK = 1
+end
+document enablestack
+Enable display of stack in the context window
+end
+
+define enabledatawin
+	set $SHOWDATAWIN = 1
+end
+document enabledatawin
+Enable display of data window in the context window
+end
+
+# disable commands for different displays
+define disableobjectivec
+	set $SHOWOBJECTIVEC = 0
+end
+document disableobjectivec
+Disable display of objective-c information in the context window
+end
+
+define disablecpuregisters
+	set $SHOWCPUREGISTERS = 0
+end
+document disablecpuregisters
+Disable display of cpu registers in the context window
+end
+
+define disablestack
+	set $SHOWSTACK = 0
+end
+document disablestack
+Disable display of stack information in the context window
+end
+
+define disabledatawin
+	set $SHOWDATAWIN = 0
+end
+document disabledatawin
+Disable display of data window in the context window
+end
+
+define 32bits
+	set $64BITS = 0
+end
+document 32bits
+Set gdb to work with 32bits binaries
+end
+
+define 64bits
+	set $64BITS = 1
+end
+document 64bits
+Set gdb to work with 64bits binaries
+end
 
 # Start ------------------------------------------------------------------------
 
