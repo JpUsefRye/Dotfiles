@@ -4037,7 +4037,104 @@ Syntax: cpsr
 | Print cpsr register.
 end
 
+define dump_binfile
+    dump memory $arg0 $arg1 $arg2
+end
+document dump_binfile
+Syntax: dump_binfile FILENAME ADDR1 ADDR2
+| Write a range of memory to a binary file.
+| The range is specified by ADDR1 and ADDR2 addresses.
+end
 
+define search
+    set $start = (char *) $arg0
+    set $end = (char *) $arg1
+    set $pattern = (short) $arg2
+    set $p = $start
+    while $p < $end
+        if (*(short *) $p) == $pattern
+            printf "pattern 0x%hx found at 0x%x\n", $pattern, $p
+        end
+        set $p++
+    end
+end
+document search
+Syntax: search <START> <END> <PATTERN>
+| Search for the given pattern beetween $start and $end address.
+end
+
+define intelsyntax
+    if $ARM == 0
+        set disassembly-flavor intel
+        set $X86FLAVOR = 0
+    end
+end
+document intelsyntax
+Syntax: intelsyntax
+| Change disassembly syntax to intel flavor.
+end
+
+
+define attsyntax
+    if $ARM == 0
+        set disassembly-flavor att
+        set $X86FLAVOR = 1
+    end
+end
+document attsyntax
+Syntax: attsyntax
+| Change disassembly syntax to at&t flavor.
+end
+
+define kernel32
+    if $argc != 0
+        # try to load kgmacros files
+        # failure is silent if non-existent...
+        source $arg0
+        set architecture i386
+        if $argc == 2
+            target remote localhost:$arg1
+        else
+            target remote localhost:8832
+        end
+    else
+        help kernel32
+    end
+end
+document kernel32
+Syntax: kernel32 PATH_TO_KGMACROS <PORT>
+| Attach to VMware gdb stub for 32 bits kernel.
+| The path to kgmacros must be supplied as first parameter.
+| If you don't want to load kgmacros just put something as the first parameter.
+| Optional parameter is the port to connect to, in case you are not using the default 8832
+| or want to kernel debug more than one active virtual machine.
+| By supplying a bogus kgmacros this command should be compatible with any OS.
+end
+
+define kernel64
+    if $argc != 0
+        # try to load kgmacros files
+        # failure is silent if non-existent...
+        source $arg0
+        set architecture i386:x86-64
+        if $argc == 2
+            target remote localhost:$arg1
+        else
+            target remote localhost:8864
+        end
+    else
+        help kernel64
+    end
+end
+document kernel64
+Syntax: kernel64 PATH_TO_KGMACROS <PORT>
+| Attach to VMware gdb stub for 64 bits kernel.
+| The path to kgmacros must be supplied as first parameter.
+| If you don't want to load kgmacros just put something as the first parameter.
+| Optional parameter is the port to connect to, in case you are not using the default 8864
+| or want to kernel debug more than one active virtual machine.
+| By supplying a bogus kgmacros this command should be compatible with any OS.
+end
 
 # Start ------------------------------------------------------------------------
 
