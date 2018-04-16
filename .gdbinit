@@ -1536,7 +1536,6 @@ set python print-stack full
 ########################################################
 
 set disassembly-flavor intel
-set print pretty on
 set print object on
 set print static-members on
 set print vtbl on
@@ -1562,6 +1561,129 @@ set $SHOWSTACK = 1
 
 # set to 1 to enable display of data window (default is 0)
 set $SHOWDATAWIN = 1
+
+
+# color aliases
+set $BLACK = 0
+set $RED = 1
+set $GREEN = 2
+set $YELLOW = 3
+set $BLUE = 4
+set $MAGENTA = 5
+set $CYAN = 6
+set $WHITE = 7
+
+# CHANGME: If you want to modify the "theme" change the colors here
+#          or just create a ~/.gdbinit.local and set these variables there
+set $COLOR_REGNAME = $GREEN
+set $COLOR_REGVAL = $BLACK
+set $COLOR_REGVAL_MODIFIED  = $RED
+set $COLOR_SEPARATOR = $BLUE
+set $COLOR_CPUFLAGS = $RED
+
+
+
+# Initialize these variables else comparisons will fail for coloring
+# we must initialize all of them at once, 32 and 64 bits, and ARM.
+set $oldrax = 0
+set $oldrbx = 0
+set $oldrcx = 0
+set $oldrdx = 0
+set $oldrsi = 0
+set $oldrdi = 0
+set $oldrbp = 0
+set $oldrsp = 0
+set $oldr8  = 0
+set $oldr9  = 0
+set $oldr10 = 0
+set $oldr11 = 0
+set $oldr12 = 0
+set $oldr13 = 0
+set $oldr14 = 0
+set $oldr15 = 0
+set $oldeax = 0
+set $oldebx = 0
+set $oldecx = 0
+set $oldedx = 0
+set $oldesi = 0
+set $oldedi = 0
+set $oldebp = 0
+set $oldesp = 0
+set $oldr0  = 0
+set $oldr1  = 0
+set $oldr2  = 0
+set $oldr3  = 0
+set $oldr4  = 0
+set $oldr5  = 0
+set $oldr6  = 0
+set $oldr7  = 0
+set $oldsp  = 0
+set $oldlr = 0
+
+define color
+ if $USECOLOR == 1
+ 	# BLACK
+ 	if $arg0 == 0
+ 		echo \033[30m
+ 	else
+ 		# RED
+	 	if $arg0 == 1
+	 		echo \033[31m
+	 	else
+	 		# GREEN
+	 		if $arg0 == 2
+	 			echo \033[32m
+	 		else
+	 			# YELLOW
+	 			if $arg0 == 3
+	 				echo \033[33m
+	 			else
+	 				# BLUE
+	 				if $arg0 == 4
+	 					echo \033[34m
+	 				else
+	 					# MAGENTA
+	 					if $arg0 == 5
+	 						echo \033[35m
+	 					else
+	 						# CYAN
+	 						if $arg0 == 6
+	 							echo \033[36m
+	 						else
+	 							# WHITE
+	 							if $arg0 == 7
+	 								echo \033[37m
+	 							end
+	 						end
+	 					end
+	 				end
+	 			end
+	 		end
+	 	end
+	 end
+ end
+end
+
+define color_reset
+    if $USECOLOR == 1
+	   echo \033[0m
+    end
+end
+
+define color_bold
+    if $USECOLOR == 1
+	   echo \033[1m
+    end
+end
+
+define color_underline
+    if $USECOLOR == 1
+	   echo \033[4m
+    end
+end
+
+
+
 
 
 define contextsize-stack
@@ -1603,6 +1725,257 @@ Usage: contextsize-code NUM
 end
 
 
+define bpl
+    info breakpoints
+end
+document bpl
+Syntax: bpl
+| List all breakpoints.
+end
+
+
+define bp
+    if $argc != 1
+        help bp
+    else
+        break $arg0
+    end
+end
+document bp
+Syntax: bp LOCATION
+| Set breakpoint.
+| LOCATION may be a line number, function name, or "*" and an address.
+| To break on a symbol you must enclose symbol name inside "".
+| Example:
+| bp "[NSControl stringValue]"
+| Or else you can use directly the break command (break [NSControl stringValue])
+end
+
+
+define bpc 
+    if $argc != 1
+        help bpc
+    else
+        clear $arg0
+    end
+end
+document bpc
+Syntax: bpc LOCATION
+| Clear breakpoint.
+| LOCATION may be a line number, function name, or "*" and an address.
+end
+
+
+define bpe
+    if $argc != 1
+        help bpe
+    else
+        enable $arg0
+    end
+end
+document bpe
+Syntax: bpe NUM
+| Enable breakpoint with number NUM.
+end
+
+
+define bpd
+    if $argc != 1
+        help bpd
+    else
+        disable $arg0
+    end
+end
+document bpd
+Syntax: bpd NUM
+| Disable breakpoint with number NUM.
+end
+
+
+define bpt
+    if $argc != 1
+        help bpt
+    else
+        tbreak $arg0
+    end
+end
+document bpt
+Syntax: bpt LOCATION
+| Set a temporary breakpoint.
+| This breakpoint will be automatically deleted when hit!.
+| LOCATION may be a line number, function name, or "*" and an address.
+end
+
+
+define bpm
+    if $argc != 1
+        help bpm
+    else
+        awatch $arg0
+    end
+end
+document bpm
+Syntax: bpm EXPRESSION
+| Set a read/write breakpoint on EXPRESSION, e.g. *address.
+end
+
+
+define bhb
+    if $argc != 1
+        help bhb
+    else
+        hb $arg0
+    end
+end
+document bhb
+Syntax: bhb LOCATION
+| Set hardware assisted breakpoint.
+| LOCATION may be a line number, function name, or "*" and an address.
+end
+
+
+define bht
+    if $argc != 1
+        help bht
+    else
+        thbreak $arg0
+    end
+end
+document bht
+Usage: bht LOCATION
+| Set a temporary hardware breakpoint.
+| This breakpoint will be automatically deleted when hit!
+| LOCATION may be a line number, function name, or "*" and an address.
+end
+
+define argv
+    show args
+end
+document argv
+Syntax: argv
+| Print program arguments.
+end
+
+define frame
+    info frame
+    info args
+    info locals
+end
+document frame
+Syntax: frame
+| Print stack frame.
+end
+
+
+define flagsarm
+# conditional flags are
+# negative/less than (N), bit 31 of CPSR
+# zero (Z), bit 30
+# Carry/Borrow/Extend (C), bit 29
+# Overflow (V), bit 28
+    # negative/less than (N), bit 31 of CPSR
+    if (($cpsr >> 0x1f) & 1)
+        printf "N "
+	    set $_n_flag = 1
+    else
+        printf "n "
+	    set $_n_flag = 0
+    end
+    # zero (Z), bit 30
+    if (($cpsr >> 0x1e) & 1)
+        printf "Z "
+	    set $_z_flag = 1
+    else
+        printf "z "
+	    set $_z_flag = 0
+    end
+    # Carry/Borrow/Extend (C), bit 29
+    if (($cpsr >> 0x1d) & 1)
+        printf "C "
+    	set $_c_flag = 1
+    else
+        printf "c "
+	    set $_c_flag = 0
+    end
+    # Overflow (V), bit 28
+    if (($cpsr >> 0x1c) & 1)
+        printf "V "
+        set $_v_flag = 1
+    else
+        printf "v "
+        set $_v_flag = 0
+    end
+    # Sticky overflow (Q), bit 27    
+    if (($cpsr >> 0x1b) & 1)
+        printf "Q "
+        set $_q_flag = 1
+    else
+        printf "q "
+        set $_q_flag = 0
+    end
+    # Java state bit (J), bit 24
+    # When T=1:
+    # J = 0 The processor is in Thumb state.
+    # J = 1 The processor is in ThumbEE state.
+    if (($cpsr >> 0x18) & 1)
+        printf "J "
+        set $_j_flag = 1
+    else
+        printf "j "
+        set $_j_flag = 0
+    end
+    # Data endianness bit (E), bit 9
+    if (($cpsr >> 9) & 1)
+        printf "E "
+        set $_e_flag = 1
+    else
+        printf "e "
+        set $_e_flag = 0
+    end
+    # Imprecise abort disable bit (A), bit 8
+    # The A bit is set to 1 automatically. It is used to disable imprecise data aborts. 
+    # It might not be writable in the Nonsecure state if the AW bit in the SCR register is reset.
+    if (($cpsr >> 8) & 1)
+        printf "A "
+        set $_a_flag = 1
+    else
+        printf "a "
+        set $_a_flag = 0
+    end
+    # IRQ disable bit (I), bit 7
+    # When the I bit is set to 1, IRQ interrupts are disabled.
+    if (($cpsr >> 7) & 1)
+        printf "I "
+        set $_i_flag = 1
+    else
+        printf "i "
+        set $_i_flag = 0
+    end
+    # FIQ disable bit (F), bit 6
+    # When the F bit is set to 1, FIQ interrupts are disabled. 
+    # FIQ can be nonmaskable in the Nonsecure state if the FW bit in SCR register is reset.
+    if (($cpsr >> 6) & 1)
+        printf "F "
+        set $_f_flag = 1
+    else
+        printf "f "
+        set $_f_flag = 0
+    end
+    # Thumb state bit (F), bit 5
+    # if 1 then the processor is executing in Thumb state or ThumbEE state depending on the J bit
+    if (($cpsr >> 5) & 1)
+        printf "T "
+        set $_t_flag = 1
+    else
+        printf "t "
+        set $_t_flag = 0
+    end
+    # TODO: GE bit ?
+end
+document flagsarm
+Syntax: flagsarm
+| Auxiliary function to set ARM cpu flags.
+end
 
 
 #
@@ -3535,6 +3908,134 @@ Syntax: stack <COUNT>
 end
 
 
+
+define flagsx86
+    # OF (overflow) flag
+    if (((unsigned int)$eflags >> 0xB) & 1)
+        printf "O "
+        set $_of_flag = 1
+    else
+        printf "o "
+        set $_of_flag = 0
+    end
+    # DF (direction) flag
+    if (((unsigned int)$eflags >> 0xA) & 1)
+        printf "D "
+    else
+        printf "d "
+    end
+    # IF (interrupt enable) flag
+    if (((unsigned int)$eflags >> 9) & 1)
+        printf "I "
+    else
+        printf "i "
+    end
+    # TF (trap) flag
+    if (((unsigned int)$eflags >> 8) & 1)
+        printf "T "
+    else
+        printf "t "
+    end
+    # SF (sign) flag
+    if (((unsigned int)$eflags >> 7) & 1)
+        printf "S "
+        set $_sf_flag = 1
+    else
+        printf "s "
+        set $_sf_flag = 0
+    end
+    # ZF (zero) flag
+    if (((unsigned int)$eflags >> 6) & 1)
+        printf "Z "
+    	set $_zf_flag = 1
+    else
+        printf "z "
+	    set $_zf_flag = 0
+    end
+    # AF (adjust) flag
+    if (((unsigned int)$eflags >> 4) & 1)
+        printf "A "
+    else
+        printf "a "
+    end
+    # PF (parity) flag
+    if (((unsigned int)$eflags >> 2) & 1)
+        printf "P "
+	    set $_pf_flag = 1
+    else
+        printf "p "
+    	set $_pf_flag = 0
+    end
+    # CF (carry) flag
+    if ((unsigned int)$eflags & 1)
+        printf "C "
+	    set $_cf_flag = 1
+    else
+        printf "c "
+    	set $_cf_flag = 0
+    end
+    printf "\n"
+end
+document flagsx86
+Syntax: flagsx86
+| Auxiliary function to set X86/X64 cpu flags.
+end
+
+
+define flags
+    # call the auxiliary functions based on target cpu
+    if $ARM == 1
+        flagsarm
+    else
+        flagsx86
+    end
+end
+document flags
+Syntax: flags
+| Print flags register.
+end
+
+
+define eflags
+    if $ARM == 1
+        # http://www.heyrick.co.uk/armwiki/The_Status_register
+        printf "     N <%d>  Z <%d>  C <%d>  V <%d>",\
+               (($cpsr >> 0x1f) & 1), (($cpsr >> 0x1e) & 1), \
+               (($cpsr >> 0x1d) & 1), (($cpsr >> 0x1c) & 1)
+        printf "  Q <%d>  J <%d>  GE <%d>  E <%d>  A <%d>",\
+               (($cpsr >> 0x1b) & 1), (($cpsr >> 0x18) & 1),\
+               (($cpsr >> 0x10) & 7), (($cpsr >> 9) & 1), (($cpsr >> 8) & 1)
+        printf "  I <%d>  F <%d>  T <%d> \n",\
+               (($cpsr >> 7) & 1), (($cpsr >> 6) & 1), \
+               (($cpsr >> 5) & 1)
+     else
+        printf "     OF <%d>  DF <%d>  IF <%d>  TF <%d>",\
+               (((unsigned int)$eflags >> 0xB) & 1), (((unsigned int)$eflags >> 0xA) & 1), \
+               (((unsigned int)$eflags >> 9) & 1), (((unsigned int)$eflags >> 8) & 1)
+        printf "  SF <%d>  ZF <%d>  AF <%d>  PF <%d>  CF <%d>\n",\
+               (((unsigned int)$eflags >> 7) & 1), (((unsigned int)$eflags >> 6) & 1),\
+               (((unsigned int)$eflags >> 4) & 1), (((unsigned int)$eflags >> 2) & 1), ((unsigned int)$eflags & 1)
+        printf "     ID <%d>  VIP <%d> VIF <%d> AC <%d>",\
+               (((unsigned int)$eflags >> 0x15) & 1), (((unsigned int)$eflags >> 0x14) & 1), \
+               (((unsigned int)$eflags >> 0x13) & 1), (((unsigned int)$eflags >> 0x12) & 1)
+        printf "  VM <%d>  RF <%d>  NT <%d>  IOPL <%d>\n",\
+               (((unsigned int)$eflags >> 0x11) & 1), (((unsigned int)$eflags >> 0x10) & 1),\
+               (((unsigned int)$eflags >> 0xE) & 1), (((unsigned int)$eflags >> 0xC) & 3)
+     end
+end
+document eflags
+Syntax: eflags
+| Print eflags register.
+end
+
+
+define cpsr
+	eflags
+end
+document cpsr
+Syntax: cpsr
+| Print cpsr register.
+end
 
 
 
