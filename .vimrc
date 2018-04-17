@@ -17,6 +17,7 @@ set background=dark
 set number                      " Numbering the lines
 set textwidth=80                " Set text width to 80
 set numberwidth=4               " Set number width to 4
+set relativenumber
 
 set incsearch                   " Find the next match as we type the search
 set hlsearch                    " Highlight searches by default
@@ -177,12 +178,16 @@ filetype on                     " Enable file type detection
 filetype indent on              " Enable file type-specific indenting
 filetype plugin on              " Enable file type-specific plugins
 
-set history=50		            " keep 50 lines of command line history
+set history=50		        " keep 50 lines of command line history
 set undofile                    " Save undo(s) after file closes
 set undodir=$HOME/.vim/undo     " where to save undo histories
 set undolevels=1000             " How many undo(s)
 set undoreload=10000            " number of lines to save for undo
 set directory=~/.vim/swap/
+
+set wildignore=*.o,*~,*.pyc     " ignore compiled files
+set noerrorbells		" No annoying sound on errors
+set novisualbell
 
 set splitright                  " Puts new vertical split windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
