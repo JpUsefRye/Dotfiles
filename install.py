@@ -6,7 +6,7 @@ import subprocess
 message = 'using {0} with python {1}'
 version = platform.python_version().__int__()
 
-if version < 2:
+if version < 3:
     version = 3
 else:
     version = 2
