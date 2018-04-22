@@ -15,7 +15,7 @@ else:
 if sys.platform == 'linux':
     print(message.format('linux', str(version)))
 elif sys.platform == 'darwin':
-    print(message.format('linux', str(version)))
+    print(message.format('OSX', str(version)))
 else:
     print("Haha, this is not for windows")
     sys.exit(0)
