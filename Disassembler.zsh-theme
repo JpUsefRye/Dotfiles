@@ -1,4 +1,4 @@
-PROMPT=$'%{$fg[red]%}┌[%{$fg_bold[brown]%}%n%{$reset_color%}%{$fg[yellow]%}@%{$fg_bold[blue]%}%m%{$reset_color%}%{$fg[red]%}][%{$fg[green]%}%~%{$reset_color%}%{$fg[red]%}]> %{$(git_prompt_info)%}%(?,,%{$fg[red]%}[%{$fg_bold[white]%}%?%{$reset_color%}%{$fg[red]%}])
+PROMPT=$'%{$fg[red]%}┌[%{$reset_color%}%{$fg_bold[brown]%}%n%{$reset_color%}%{$fg_bold[yellow]%}@%{$fg_bold[cyan]%}%m%{$reset_color%}%{$fg[red]%}][%{$fg[green]%}%~%{$reset_color%}%{$fg[red]%}]> %{$(git_prompt_info)%}%(?,,%{$fg[red]%}[%{$fg_bold[white]%}%?%{$reset_color%}%{$fg[red]%}])
 %{$fg[red]%}└──╼%{$fg_bold[yellow]%} λ%{$reset_color%} '
 PS2=$' %{$fg[green]%}|>%{$reset_color%} '
 
