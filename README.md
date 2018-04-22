@@ -4,7 +4,8 @@ Running on Arch Linux
 
 **NOTE**:
 ```
-the [.bashrc/.zshrc] designed for arch linux if you use other linux distro or OSX just remove PACMAN ALIASES section 
+the [.bashrc/.zshrc] designed for arch linux
+if you use other linux distro or OSX just remove PACMAN ALIASES section 
 and all wil be fine
 if you use zsh you must have oh-my-zsh installed
 ```
@@ -19,7 +20,7 @@ in this repo there is my personal vim configuration that i use to code ([.vimrc]
 
 there is my [.gdbinit](.gdbinit) file that i use in debugging and reverse engineering, user interface from [GDB-Dashboard](https://github.com/cyrus-and/gdb-dashboard) extension and the configurations is by me and some people.
 
-in the past i used [.bashrc](.bashrc) for my shell but now i am [.zshrc](.zshrc) fan.
+i used [.bashrc](.bashrc) alot for my shell but now i am [.zshrc](.zshrc) fan.
 
 #### Required
 
