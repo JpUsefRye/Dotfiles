@@ -137,6 +137,9 @@ unsetopt menu_complete # do not autoselect the first completion entry
 unsetopt correct_all # spelling correction for arguments
 setopt correct # spelling correction for commands
 
+# Sources
+source $ZSH/oh-my-zsh.sh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Some PATH Variables and exports
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
@@ -146,7 +149,5 @@ export PATH="$PATH:$HOME/go/bin"
 export npm_config_prefix=~/.node_modules
 export GEM_HOME=$HOME/.gem
 export PATH=/usr/lib/jvm/java-8-openjdk/jre/bin/:$PATH
-source $ZSH/oh-my-zsh.sh
-
 export ARCHFLAGS="-arch x86_64"
 export PROMPT
