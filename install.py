@@ -2,11 +2,12 @@
 import os
 import sys
 import subprocess
+import platform
 
 message = 'using {0} with python {1}'
-version = platform.python_version().__int__()
+version = int(platform.python_version()[0])
 
-if version < 3:
+if version >= 3:
     version = 3
 else:
     version = 2
@@ -26,14 +27,14 @@ def shell_theme():
     print('(2) zsh')
 
     try:
-        shell = input('+=> ').__int__()
+        shell = input('+=> ')
     except:
         print('doesnt seem to me that this is valid input')
 
-    if shell == 1:
+    if int(shell) == 1:
         subprocess.call('cp .bashrc ~/.bashrc', shell=True)
         subprocess.call('source ~/.bashrc', shell=True)
-    elif shell == 2:
+    elif int(shell) == 2:
         subprocess.call('cp .zshrc ~/.zshrc', shell=True)
         subprocess.call('cp .Disassembler.zsh-theme ./.oh-my-zsh/theme/', shell=True)
         subprocess.call('source ~/.zshrc', shell=True)
@@ -47,11 +48,11 @@ def vim():
     print('(1) .vimrc')
     print('(2) vim colorscheme')
 
-    choice = input('+=> ').__int__()
+    choice = input('+=> ')
 
-    if choice == 1:
+    if int(choice) == 1:
         subprocess.call('cp .vimrc ~/.vimrc', shell=True)
-    elif choice == 2:
+    elif int(choice) == 2:
         subprocess.call('mkdir -p ~/.vim/colors && vim/colors/tender.vim ~/.vim/colors', shell=True)
     else:
         print('choose from the givin options')

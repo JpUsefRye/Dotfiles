@@ -15,7 +15,7 @@ in this repo there is my personal vim configuration that i use to code ([.vimrc]
 
 there is my [.gdbinit](.gdbinit) file that i use in debugging and reverse engineering, user interface from [GDB-Dashboard](https://github.com/cyrus-and/gdb-dashboard) extension and the configurations is by me and some people.
 
-my nice [.bashrc](.bashrc) for my nice terminal.
+in the past i used [.bashrc](.bashrc) for my shell but now i am [.zshrc](.zshrc) fan.
 
 #### Required
 
@@ -27,9 +27,21 @@ my nice [.bashrc](.bashrc) for my nice terminal.
 
 ### Installation
 
-```bash
+```shell
 chmod +x install.sh
-./install.sh
+
+# to install the .vimrc run this command
+(sleep 1; echo 1; cat;) | python install.py vim
+
+# to install vim colorscheme
+(sleep 1; echo 2; cat;) | python install.py vim
+
+# to install .bashrc
+(sleep 1; echo 1; cat;) | python install.py shell
+
+# to install .zshrc (requires oh-my-zsh)
+(sleep 1; echo 2; cat;) | python install.py shell
+
 ```
 
 ### Contribution
