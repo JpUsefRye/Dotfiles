@@ -2,8 +2,12 @@
 
 Running on Arch Linux
 
-**NOTE**: read the comments in the `.bashrc` carefully.
-if you have any problem, submit an issue or pull requests.
+**NOTE**:
+```
+the [.bashrc/.zshrc] designed for arch linux if you use other linux distro or OSX just remove PACMAN ALIASES section 
+and all wil be fine
+if you use zsh you must have oh-my-zsh installed
+```
 
 # Screen Shot
 
