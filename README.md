@@ -33,7 +33,7 @@ i used [.bashrc](.bashrc) alot for my shell but now i am [.zshrc](.zshrc) fan.
 ### Installation
 
 ```shell
-chmod +x install.sh
+chmod +x install.py
 
 # to install the .vimrc run this command
 (sleep 1; echo 1; cat;) | python install.py vim
