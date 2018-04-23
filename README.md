@@ -5,7 +5,7 @@ Running on Arch Linux
 **NOTE**:
 ```
 the [.bashrc/.zshrc] designed for arch linux
-if you use other linux distro or OSX just remove PACMAN ALIASES section 
+if you use other linux distro or OSX just remove PACMAN ALIASES section
 and all wil be fine
 if you use zsh you must have oh-my-zsh installed
 ```
@@ -36,16 +36,16 @@ i used [.bashrc](.bashrc) alot for my shell but now i am [.zshrc](.zshrc) fan.
 chmod +x install.py
 
 # to install the .vimrc run this command
-(sleep 1; echo 1; cat;) | python install.py vim
+$ (sleep 1; echo 1; cat;) | python install.py vim
 
 # to install vim colorscheme
-(sleep 1; echo 2; cat;) | python install.py vim
+$ (sleep 1; echo 2; cat;) | python install.py vim
 
 # to install .bashrc
-(sleep 1; echo 1; cat;) | python install.py shell
+$ (sleep 1; echo 1; cat;) | python install.py shell
 
 # to install .zshrc (requires oh-my-zsh)
-(sleep 1; echo 2; cat;) | python install.py shell
+$ (sleep 1; echo 2; cat;) | python install.py shell
 
 ```
 
