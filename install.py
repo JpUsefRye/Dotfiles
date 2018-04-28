@@ -36,7 +36,7 @@ def shell_theme():
         subprocess.call('source ~/.bashrc', shell=True)
     elif int(shell) == 2:
         subprocess.call('cp .zshrc ~/.zshrc', shell=True)
-        subprocess.call('cp .Disassembler.zsh-theme ~/.oh-my-zsh/theme/', shell=True)
+        subprocess.call('cp Disassembler.zsh-theme ~/.oh-my-zsh/theme/', shell=True)
         subprocess.call('source ~/.zshrc', shell=True)
     else:
         print('choose from the givin options')
@@ -58,13 +58,18 @@ def vim():
         print('choose from the givin options')
         sys.exit(1)
 
-if sys.argv[1] == 'vim':
-    vim()
-elif sys.argv[1] == 'shell':
-    shell_theme()
-else:
+def banner():
     print('usage {0} [argument]'.format(sys.argv[0]))
     print('arguments:')
     print('shell        install bash or zsh')
     print('vim          install vimrc or colorscheme')
-    sys.exit(0)
+
+try:
+    if sys.argv[1] == 'vim':
+        vim()
+    elif sys.argv[1] == 'shell':
+        shell_theme()
+    else:
+        banner()
+except Exception as e:
+    banner()
