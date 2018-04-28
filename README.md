@@ -12,7 +12,7 @@ if you use zsh you must have oh-my-zsh installed
 
 # Screen Shot
 
-![My Shell](https://asciinema.org/a/gUX5oIrNnjD26rBM9etm4h4qp.png)(https://asciinema.org/a/gUX5oIrNnjD26rBM9etm4h4qp)
+[![My Shell](https://asciinema.org/a/gUX5oIrNnjD26rBM9etm4h4qp.png)](https://asciinema.org/a/gUX5oIrNnjD26rBM9etm4h4qp)
 
 you can find screen shots at [screenshots.md](Screenshots.md)
 
