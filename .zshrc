@@ -144,6 +144,14 @@ alias pacclean="pacman -Sc"           # Delete all not currently installed packa
 alias pacmake="makepkg -fcsi"         # Make package from PKGBUILD file in current directory
 # END PACMAN ALIASES
 
+# CD ALIASES
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+# END CD ALIASES
+
 # PACMAN HELPER FUNCTIONS
 
 function paclist() {

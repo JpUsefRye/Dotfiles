@@ -284,12 +284,13 @@ endfunction
 
 command! -bang AutoSave call s:autosave(<bang>1)
 
+" markdown stuff
 nnoremap <leader>1 m`yypVr=``
 nnoremap <leader>2 m`yypVr-``
 nnoremap <leader>3 m`^i### <esc>``4l
 nnoremap <leader>4 m`^i#### <esc>``5l
 nnoremap <leader>5 m`^i##### <esc>``6l
--
+
 " Moving lines
 nnoremap <silent> <C-k> :move-2<cr>
 nnoremap <silent> <C-j> :move+<cr>
@@ -319,8 +320,8 @@ set undolevels=1000             " How many undo(s)
 set undoreload=10000            " number of lines to save for undo
 set directory=~/.vim/swap/
 
-set wildignore=*.o,*~,*.pyc     " ignore compiled files
-set noerrorbells		        " No annoying sound on errors
+set wildignore=*.o,*~,*.pyc,*.so " ignore compiled files
+set noerrorbells		         " No annoying sound on errors
 set novisualbell
 
 set splitright                  " Puts new vertical split windows to the right of the current
