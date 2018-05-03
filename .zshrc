@@ -360,6 +360,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Some PATH Variables and exports
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 PATH="$HOME/.node_modules/bin:$PATH"
+export XDG_CURRENT_DESKTOP='X-Generic'
 export QT_X11_NO_MITSHM=1 # fixes the issue when opening qt app with sudo
 export PATH="$PATH:$HOME/go/bin"
 export npm_config_prefix=~/.node_modules
