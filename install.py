@@ -53,7 +53,18 @@ def vim():
     if int(choice) == 1:
         subprocess.call('cp .vimrc ~/.vimrc', shell=True)
     elif int(choice) == 2:
-        subprocess.call('mkdir -p ~/.vim/colors && cp vim/colors/tender.vim ~/.vim/colors', shell=True)
+        print('Which colorscheme')
+        print('(1) tender')
+        print('(2) jellybeans')
+
+        cs = input('+=> ')
+        if int(cs) == 1:
+            subprocess.call('mkdir -p ~/.vim/colors && cp vim/colors/tender.vim ~/.vim/colors', shell=True)
+        elif int(cs) == 2:
+             subprocess.call('mkdir -p ~/.vim/colors && cp vim/colors/jellybeans.vim ~/.vim/colors', shell=True)
+        else:
+            print('invalid input')
+            sys.exit(1)
     else:
         print('choose from the givin options')
         sys.exit(1)

@@ -35,19 +35,24 @@ i used [.bashrc](.bashrc) alot for my shell but now i am [.zshrc](.zshrc) fan.
 ### Installation
 
 ```shell
+git clone https://github.com/JpUsefRye/Dotfiles.git && cd Dotfiles
+
 chmod +x install.py
 
 # to install the .vimrc run this command
 $ (sleep 1; echo 1; cat;) | python install.py vim
 
-# to install vim colorscheme
-$ (sleep 1; echo 2; cat;) | python install.py vim
+# to install vim tender colorscheme
+$ (sleep 1; echo 2; echo 1; cat) | python install.py vim
+
+# to install vim jellybeans colorscheme
+$ (sleep 1; echo 2; echo 2; cat) | python install.py vim
 
 # to install .bashrc
-$ (sleep 1; echo 1; cat;) | python install.py shell
+$ (sleep 1; echo 1; cat) | python install.py shell
 
 # to install .zshrc (requires oh-my-zsh)
-$ (sleep 1; echo 2; cat;) | python install.py shell
+$ (sleep 1; echo 2; cat) | python install.py shell
 
 ```
 
