@@ -12,9 +12,11 @@ if you use zsh you must have oh-my-zsh installed
 
 # Screen Shot
 
-[![My Shell](https://asciinema.org/a/gUX5oIrNnjD26rBM9etm4h4qp.png)](https://asciinema.org/a/gUX5oIrNnjD26rBM9etm4h4qp)
+![radare](images/re2.png)
 
-you can find screen shots at [screenshots.md](Screenshots.md)
+![gdb](images/re1.png)
+
+you can find more screenshots at [screenshots.md](Screenshots.md)
 
 
 # what inside this repo
@@ -32,6 +34,8 @@ i used [.bashrc](.bashrc) alot for my shell but now i am [.zshrc](.zshrc) fan.
 
 - figlet
 
+- tput
+
 ### Installation
 
 ```shell
@@ -40,7 +44,7 @@ git clone https://github.com/JpUsefRye/Dotfiles.git && cd Dotfiles
 chmod +x install.py
 
 # to install the .vimrc run this command
-$ (sleep 1; echo 1; cat;) | python install.py vim
+$ (sleep 1; echo 1; cat) | python install.py vim
 
 # to install vim tender colorscheme
 $ (sleep 1; echo 2; echo 1; cat) | python install.py vim
