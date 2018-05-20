@@ -14,7 +14,7 @@ if you use zsh you must have oh-my-zsh installed
 
 ![radare](images/re2.png)
 
-![gdb](images/re1.png)
+![gdb](images/re.png)
 
 you can find more screenshots at [screenshots.md](Screenshots.md)
 
