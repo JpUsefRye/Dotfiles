@@ -295,7 +295,7 @@ alias ping='ping -c 5'
 alias hello="echo 'Not you again'"
 alias vi="vim"
 alias open="xdg-open"
-alias grep="grep --color=auto"
+alias q="exit"
 # END Other
 
 # Terminal Interface
@@ -364,6 +364,7 @@ setopt correct # spelling correction for commands
 # Sources
 source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Some PATH Variables and exports
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
