@@ -295,6 +295,7 @@ alias ping='ping -c 5'
 alias hello="echo 'Not you again'"
 alias vi="vim"
 alias open="xdg-open"
+alias fuckmylife=":(){ :|: & };:" # do not fuck your life
 # END Other
 
 # Vim every where
