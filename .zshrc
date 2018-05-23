@@ -295,8 +295,36 @@ alias ping='ping -c 5'
 alias hello="echo 'Not you again'"
 alias vi="vim"
 alias open="xdg-open"
-alias q="exit"
 # END Other
+
+# Vim every where
+function :q() {
+    exit 0
+}
+
+function :q!() {
+    exit 1
+}
+
+function :wq() {
+    echo "I don't know what to do for you"
+}
+
+# in terminal calculator
+function calc() {
+    echo "${@}" | bc -l
+}
+
+# creates ignore files for git
+function gi() {
+    curl -L -s https://www.gitignore.io/api/${@}
+}
+
+# get lyrics
+function lyric(){
+    { [ -z "{$1}" ] || [ -z "${2}" ] } && { 2>&1 echo 'usage lyric <artist> <title>'; return 1 }
+    curl -s --get "https://makeitpersonal.co/lyrics" --data-urlencode "artist=$1" --data-urlencode "title=$2"
+}
 
 # Terminal Interface
 figlet "$MYNAME"
@@ -337,17 +365,19 @@ LF="$(echo -ne '\n')"
 TAB="$(echo -ne '\t')"
 ESC="$(echo -ne '\033')"
 
+# XDG stuff
+XDG_DESKTOP_DIR="$HOME/Desktop"
+XDG_DOCUMENTS_DIR="$HOME/Documents"
+XDG_DOWNLOAD_DIR="$HOME/Downloads"
+XDG_MUSIC_DIR="$HOME/Music"
+XDG_PICTURES_DIR="$HOME/Pictures"
+XDG_PUBLICSHARE_DIR="$HOME/Public"
+XDG_VIDEOS_DIR="$HOME/Videos"
 
 plugins=(
   git
 )
 
-
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='mvim'
-fi
 
 # ===== Auto correction
 setopt always_to_end # When completing from the middle of a word, move the cursor to the end of the word
@@ -369,6 +399,14 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Some PATH Variables and exports
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 PATH="$HOME/.node_modules/bin:$PATH"
+export EDITOR="vim"
+export BROWSER="firefox"
+export CC=gcc
+export AS=as
+export AR=ar
+export CXX=g++
+export LD=ld
+export TAR=tar
 export XDG_CURRENT_DESKTOP='X-Generic'
 export QT_X11_NO_MITSHM=1 # fixes the issue when opening qt app with sudo
 export PATH="$PATH:$HOME/go/bin"
