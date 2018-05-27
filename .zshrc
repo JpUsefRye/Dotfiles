@@ -232,6 +232,7 @@ alias lt='ls -ltr'         # Sort by date, most recent last
 # END LS STUFF
 
 # LOL
+alias dmesg="dmesg --color=always"
 alias wtf='dmesg'
 alias onoz='cat /var/log/errors.log'
 alias rtfm='man'
@@ -295,6 +296,7 @@ alias ping='ping -c 5'
 alias hello="echo 'Not you again'"
 alias vi="vim"
 alias open="xdg-open"
+alias less="less -R"
 alias fuckmylife=":(){ :|: & };:" # do not fuck your life
 # END Other
 
