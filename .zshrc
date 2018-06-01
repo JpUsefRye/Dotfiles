@@ -3,14 +3,15 @@ export ZSH=/home/jpusefrye/.oh-my-zsh
 ZSH_THEME="Disassembler"
 
 LANG=en_US.UTF-8
-MYNAME=JpUsefRye
+MYNAME=JpUsefRye    # replace this with your name
+RESOLUTION=1366x768 # replace this with your display size (for ffmpeg)
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 
 # zsh insulter
-print_message () {
+function print_message () {
 
     local messages
     local message
@@ -95,7 +96,7 @@ print_message () {
     fi
 }
 
-function_exists () {
+function function_exists () {
     # Zsh returns 0 even on non existing functions with -F so use -f
     declare -f $1 > /dev/null
     return $?
@@ -112,7 +113,7 @@ else
     }
 fi
 
-command_not_found_handler () {
+function command_not_found_handler () {
     print_message
     orig_command_not_found_handler "$@"
 }
@@ -305,12 +306,12 @@ function :q() {
     exit 0
 }
 
-function :q!() {
-    exit 1
+function q() {
+    exit 0
 }
 
-function :wq() {
-    echo "I don't know what to do for you"
+function :q!() {
+    exit 1
 }
 
 # in terminal calculator
@@ -327,6 +328,56 @@ function gi() {
 function lyric(){
     { [ -z "{$1}" ] || [ -z "${2}" ] } && { 2>&1 echo 'usage lyric <artist> <title>'; return 1 }
     curl -s --get "https://makeitpersonal.co/lyrics" --data-urlencode "artist=$1" --data-urlencode "title=$2"
+}
+
+# FFmpeg Stuff
+
+function scrncast(){
+    # record screen with audio
+    # arguments:
+    #   - output.format
+    ffmpeg -f x11grab -video_size ${RESOLUTION} -framerate 30 -i :0.0 \
+    -f pulse -i default -preset ultrafast -crf 18 -pix_fmt yuv420p ${1}
+}
+
+function scrnshot(){
+    # take a screen shot
+    # arguments
+    #   - output.format
+    ffmpeg -f x11grab -video_size ${RESOLUTION} -i ${DISPLAY} -vframes 1 ${1}
+}
+
+function webcam(){
+    # record webcam with audio
+    # arguments
+    #   - output.format
+    WEBCAM_RESOLUTION=640x480
+    ffmpeg -f v4l2 -video_size ${WEBCAM_RESOLUTION} -i /dev/video0 -f pulse \
+    -i default -c:v libx264 -preset ultrafast -c:a aac ${1}
+}
+
+function audiorec(){
+    # record audio (microphone)
+    # arguments
+    #   - output.format
+    ffmpeg -f pulse -i default ${1}
+}
+
+function gifconverter(){
+    # convert video to gif
+    # arguments
+    #   - frames folder
+    #   - target video
+    #   - output file output.gif
+    FOLDER=${1}
+    INPUT=${2}
+    OUTPUT=${3}
+
+    mkdir ${FOLDER}
+    ffmpeg -i ${INPUT} -vf scale=320:-1:flags=lanczos,fps=10 \
+    ${FOLDER}/ffout%03d.png
+
+    convert -loop 0 ${FOLDER}/ffout*.png ${OUTPUT}
 }
 
 # Terminal Interface
