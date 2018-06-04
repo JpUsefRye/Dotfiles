@@ -380,6 +380,11 @@ function gifconverter(){
     convert -loop 0 ${FOLDER}/ffout*.png ${OUTPUT}
 }
 
+function ngrokserve(){
+     ngrok http 127.0.0.1:${1} -host-header="127.0.0.1:${1}"
+}
+
+
 # Terminal Interface
 figlet "$MYNAME"
 fortune | cowsay -f moose
