@@ -380,10 +380,18 @@ function gifconverter(){
     convert -loop 0 ${FOLDER}/ffout*.png ${OUTPUT}
 }
 
+# Misc
+
 function ngrokserve(){
      ngrok http 127.0.0.1:${1} -host-header="127.0.0.1:${1}"
 }
 
+function shrainbow(){
+    (seq 231 -1 16) | while read i; do
+        printf "\x1b[48;5;${i}m\n";
+        sleep .02;
+    done;
+}
 
 # Terminal Interface
 figlet "$MYNAME"
