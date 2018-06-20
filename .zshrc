@@ -130,6 +130,7 @@ fi
 ##########################################################
 
 # PACMAN ALIASES
+alias pacman="pacman --color auto" # pacman have colors!
 alias pacupg='pacman -Syu' # Synchronize with repositories and then upgrade packages that are out of date
 alias pacupd='pacman -Sy'  # Refresh of all package lists after updating /etc/pacman.d/mirrorlist
 alias pacin='pacman -S'    # Install specific package(s) from the repositories
