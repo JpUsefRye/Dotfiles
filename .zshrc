@@ -484,6 +484,11 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Some PATH Variables and exports
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 PATH="$HOME/.node_modules/bin:$PATH"
+PATH="/home/jpusefrye/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/jpusefrye/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/jpusefrye/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/jpusefrye/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/jpusefrye/perl5"; export PERL_MM_OPT;
 export EDITOR="vim"
 export BROWSER="firefox"
 export CC=gcc
@@ -500,3 +505,4 @@ export GEM_HOME=$HOME/.gem
 export PATH=/usr/lib/jvm/java-8-openjdk/jre/bin/:$PATH
 export ARCHFLAGS="-arch x86_64"
 export PROMPT
+
