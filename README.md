@@ -16,6 +16,8 @@ if you use zsh you must have oh-my-zsh installed
 
 ![gdb](images/re.png)
 
+![Vim][images/vim2.png]
+
 you can find more screenshots at [screenshots.md](Screenshots.md)
 
 
