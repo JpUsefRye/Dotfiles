@@ -12,11 +12,14 @@ if you use zsh you must have oh-my-zsh installed
 
 # Screen Shot
 
+![terminal](images/terminal.gif)
+
 ![radare](images/re2.png)
 
 ![gdb](images/re.png)
 
 ![Vim](images/vim2.png)
+
 
 you can find more screenshots at [screenshots.md](Screenshots.md)
 
