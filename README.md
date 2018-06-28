@@ -20,10 +20,6 @@ if you use zsh you must have oh-my-zsh installed
 
 ![Vim](images/vim2.png)
 
-
-you can find more screenshots at [screenshots.md](Screenshots.md)
-
-
 # what inside this repo
 in this repo there is my personal vim configuration that i use to code ([.vimrc](.vimrc)).
 
