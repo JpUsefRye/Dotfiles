@@ -289,3 +289,32 @@ set novisualbell
 set splitright                  " Puts new vertical split windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
 
+
+" Sadly i will start using plugins
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'https://github.com/terryma/vim-multiple-cursors'
+Plug 'https://github.com/w0rp/ale.git'
+
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping for multi cursor plugin
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+" ale plugin
+let g:ale_echo_msg_error_str = 'Error'
+let g:ale_echo_msg_warning_str = 'Warning'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+let g:ale_sign_error = '->'
+let g:ale_sign_warning = '!!'
+
+call plug#end()
