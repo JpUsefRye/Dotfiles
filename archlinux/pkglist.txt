@@ -44,7 +44,6 @@ bzip2
 cabextract
 calibre
 chrome-gnome-shell-git
-chromium
 clementine
 cmatrix
 codeblocks
@@ -64,21 +63,20 @@ dex2jar
 dhcpcd
 dialog
 diffutils
-discord
 dnsmasq
 docker
 driconf
 dropbox
 dsniff
 e2fsprogs
-eclipse-java
-emacs
 empathy
 eog
 epiphany
 etherape
 ettercap-gtk
 evince
+expac
+expect
 fakeroot
 fbreader
 figlet
@@ -88,7 +86,6 @@ filesystem
 filezilla
 findutils
 firefox
-firefox-developer-edition
 firejail
 five-or-more
 flatpak-builder
@@ -106,7 +103,6 @@ gdb
 gdm
 gedit
 gedit-code-assistance
-geogebra
 gettext
 gimp
 gitg
@@ -165,7 +161,6 @@ gnome-user-share
 gnome-weather
 gnu-netcat
 go
-go-ethereum
 googlemaps
 gradle
 grep
@@ -205,8 +200,6 @@ ipython2
 jfsutils
 john
 jre9-openjdk
-julia
-julia-docs
 keepassx
 keepnote
 konsole
@@ -239,6 +232,7 @@ linux-docs
 linux-headers
 llvm
 logrotate
+lolcat
 lsof
 ltrace
 luarocks
@@ -299,6 +293,8 @@ pavucontrol
 pciutils
 pcmciautils
 perl
+perl-curses-ui
+perl-curses-ui-poe
 php
 php-apache
 php-cgi
@@ -311,8 +307,6 @@ pixiewps
 pkgconf
 pkgfile
 polari
-processing
-processing-examples
 procps-ng
 psmisc
 pwndbg
@@ -471,7 +465,6 @@ wget
 when
 which
 wifite
-wine
 wireless_tools
 wireshark-cli
 wireshark-gtk
@@ -490,7 +483,6 @@ yaourt
 yarn
 yelp
 youtube-dl
-zaproxy
 zsh
 zsh-autosuggestions
 zsh-completions

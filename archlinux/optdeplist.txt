@@ -1,0 +1,9 @@
+cmake
+fwupd
+gtkglext
+kio-extras
+libtiger
+python2-olefile
+python-olefile
+qt5-tools
+xorg-xprop
