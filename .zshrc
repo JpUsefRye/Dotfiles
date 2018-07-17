@@ -1,10 +1,10 @@
-export ZSH=/home/jpusefrye/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="Disassembler"
 
 LANG=en_US.UTF-8
-MYNAME=JpUsefRye    # replace this with your name
-RESOLUTION=1366x768 # replace this with your display size (for ffmpeg)
+MYNAME=MalSym                   # replace this with your name
+RESOLUTION=1366x768             # replace this with your display size (for ffmpeg)
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -395,7 +395,7 @@ function shrainbow(){
 }
 
 # Terminal Interface
-figlet "$MYNAME"
+figlet -f ~/.fonts/Modular.flf "$MYNAME"
 fortune | cowsay -f moose
 echo -ne "Today is:\t\t" `date`; echo ""<<< Today
 echo -e "Kernel Information: \t" `uname -smr`
