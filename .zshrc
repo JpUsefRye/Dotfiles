@@ -485,8 +485,8 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 #export LESS_TERMCAP_ZW=$(tput rsupm)
 #export GROFF_NO_SGR=1         # For Konsole and Gnome-terminal
 
-if [ -f ~/.zcompdump-malicioussymbol-5.5.1 ]; then
-    rm ~/.zcompdump-malicioussymbol-5.5.1
+if [ -f ~/.zcompdump-$HOST-5.5.1 ]; then
+    rm ~/.zcompdump-$HOST-5.5.1
 fi
 
 if [ -f ~/.zcompdump ]; then
@@ -496,11 +496,11 @@ fi
 # Some PATH Variables and exports
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 PATH="$HOME/.node_modules/bin:$PATH"
-PATH="/home/jpusefrye/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/jpusefrye/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/jpusefrye/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/jpusefrye/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/jpusefrye/perl5"; export PERL_MM_OPT;
+PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 ZSH_DISABLE_COMPINIT=true
 export ZSH_DISABLE_COMPINIT
 export EDITOR="vim"
