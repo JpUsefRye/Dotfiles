@@ -3,7 +3,6 @@ adwaita-icon-theme
 aircrack-ng
 aisleriot
 alacarte
-android-apktool
 android-file-transfer
 android-tools
 android-udev
@@ -39,11 +38,9 @@ bluez-qt
 bluez-utils
 boost
 brasero
-burpsuite
 bzip2
 cabextract
 calibre
-chrome-gnome-shell-git
 clementine
 cmatrix
 codeblocks
@@ -59,21 +56,18 @@ dconf-editor
 deepin-voice-recorder
 devhelp
 device-mapper
-dex2jar
 dhcpcd
 dialog
 diffutils
 dnsmasq
 docker
 driconf
-dropbox
 dsniff
 e2fsprogs
 empathy
 eog
 epiphany
 etherape
-ettercap-gtk
 evince
 expac
 expect
@@ -106,7 +100,6 @@ gedit-code-assistance
 gettext
 gimp
 gitg
-gksu
 glew
 glfw-doc
 glfw-x11
@@ -143,7 +136,6 @@ gnome-screenshot
 gnome-session
 gnome-settings-daemon
 gnome-shell
-gnome-shell-extension-dash-to-dock
 gnome-shell-extensions
 gnome-software
 gnome-software-packagekit-plugin
@@ -182,7 +174,6 @@ gvfs-mtp
 gvfs-nfs
 gvfs-smb
 gzip
-hash-identifier
 hashcat
 hashdeep
 hitori
@@ -206,13 +197,9 @@ konsole
 leafpad
 less
 lhasa
-libc++
-libc++abi
-libc++experimental
 libcurl-compat
 libcurl-gnutls
 libgnome-games-support
-libhttpseverywhere
 libmcrypt
 libmicrodns
 libmicrohttpd
@@ -266,7 +253,6 @@ networkmanager-openvpn
 nginx
 nikto
 nmap
-noip
 noto-fonts
 noto-fonts-emoji
 ntop
@@ -291,7 +277,6 @@ pacman
 patch
 pavucontrol
 pciutils
-pcmciautils
 perl
 perl-curses-ui
 perl-curses-ui-poe
@@ -440,7 +425,6 @@ totem
 tracker
 tracker-miners
 transmission-gtk
-ttf-symbola
 typescript
 ufw
 uget
@@ -451,7 +435,6 @@ util-linux
 uwsgi
 vdpauinfo
 vi
-vibrancy-colors
 vim
 vim-align
 vim-nerdtree
@@ -459,7 +442,6 @@ vinagre
 vino
 virtualbox
 vlc
-vokoscreen
 vulkan-intel
 wget
 when
@@ -470,7 +452,6 @@ wireshark-cli
 wireshark-gtk
 wpa_supplicant
 wpscan
-wxhexeditor
 xdg-user-dirs-gtk
 xdotool
 xfsprogs
@@ -479,7 +460,6 @@ xorg-twm
 xorg-xinit
 xorg-xwud
 xterm
-yaourt
 yarn
 yelp
 youtube-dl
