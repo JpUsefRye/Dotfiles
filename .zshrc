@@ -395,8 +395,13 @@ function shrainbow(){
 }
 
 # Terminal Interface
-figlet -f ~/.fonts/Modular.flf "$MYNAME"
+figlet -f ~/.fonts/Modular.flf "${MYNAME}"
 fortune | cowsay -f moose
+IFS='=' OS_NAME_COLOR__=($(cat /etc/os-release|grep ANSI_COLOR))
+IFS='=' OS_NAME__=($(cat /etc/os-release|grep PRETTY_NAME))
+
+echo -ne "OS: \033[$(python -c "print('`echo $OS_NAME_COLOR__[2]`'.replace('\"', ''))")m$(python -c "print('`echo $OS_NAME__[2]`'.replace('\"', ''))")\033[0m\n" # fuck bash fuck zsh
+
 echo -ne "Today is:\t\t" `date`; echo ""<<< Today
 echo -e "Kernel Information: \t" `uname -smr`
 # END Terminal Interface
