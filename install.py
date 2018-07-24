@@ -15,7 +15,9 @@ else:
 if sys.platform == 'linux':
     print(message.format('linux', str(version)))
 elif sys.platform == 'darwin':
-    print(message.format('OSX', str(version)))
+    print("Install it your self")
+    print("This is designed for linux only")
+    sys.exit(0)
 else:
     print("Haha, this is not for windows")
     sys.exit(0)
@@ -23,23 +25,23 @@ else:
 def shell_theme():
     print('\n')
     print('What shell you use?')
-    print('(1) bash')
+    print('(1) bash (DEPRECATED)')
     print('(2) zsh')
 
     try:
         shell = input('+=> ')
     except:
-        print('doesnt seem to me that this is valid input')
+        pass
 
     if int(shell) == 1:
         subprocess.call('cp .bashrc ~/.bashrc', shell=True)
         subprocess.call('source ~/.bashrc', shell=True)
     elif int(shell) == 2:
         subprocess.call('cp .zshrc ~/.zshrc', shell=True)
-        subprocess.call('cp Disassembler.zsh-theme ~/.oh-my-zsh/theme/', shell=True)
+        subprocess.call('cp Disassembler.zsh-theme $ZSH/theme/', shell=True)
         subprocess.call('source ~/.zshrc', shell=True)
     else:
-        print('choose from the givin options')
+        print('choose from the given options')
         sys.exit(1)
 
 def vim():
@@ -66,11 +68,11 @@ def vim():
             print('invalid input')
             sys.exit(1)
     else:
-        print('choose from the givin options')
+        print('choose from the given options')
         sys.exit(1)
 
 def banner():
-    print('usage {0} [argument]'.format(sys.argv[0]))
+    print('usage {0} [...]'.format(sys.argv[0]))
     print('arguments:')
     print('shell        install bash or zsh')
     print('vim          install vimrc or colorscheme')

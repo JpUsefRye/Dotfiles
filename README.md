@@ -1,6 +1,4 @@
-# My Personal Dotfiles
-
-Running on Arch Linux
+ My Personal Dotfiles
 
 **NOTE**:
 ```
@@ -10,15 +8,7 @@ and all wil be fine
 if you use zsh you must have oh-my-zsh installed
 ```
 
-# Screen Shot
-
-![terminal](images/terminal.gif)
-
-![radare](images/re2.png)
-
-![gdb](images/re.png)
-
-![Vim](images/vim2.png)
+![terminal](photo.png)
 
 # what inside this repo
 in this repo there is my personal vim configuration that i use to code ([.vimrc](.vimrc)).
@@ -26,6 +16,10 @@ in this repo there is my personal vim configuration that i use to code ([.vimrc]
 there is my [.gdbinit](.gdbinit) file that i use in debugging and reverse engineering, user interface from [GDB-Dashboard](https://github.com/cyrus-and/gdb-dashboard) extension and the configurations is by me and some people.
 
 i used [.bashrc](.bashrc) alot for my shell but now i am [.zshrc](.zshrc) fan.
+
+# Tested On
+* Arch Linux (currently running)
+* Kali Linux
 
 #### Required
 
@@ -37,10 +31,12 @@ i used [.bashrc](.bashrc) alot for my shell but now i am [.zshrc](.zshrc) fan.
 
 - tput
 
+- python
+
 ### Installation
 
 ```shell
-git clone https://github.com/JpUsefRye/Dotfiles.git && cd Dotfiles
+git clone https://github.com/MaliciouSSymbol/Dotfiles.git && cd Dotfiles
 
 chmod +x install.py
 
