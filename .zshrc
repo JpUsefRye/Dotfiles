@@ -467,7 +467,7 @@ setopt correct # spelling correction for commands
 source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
+source /etc/profile.d/jre.sh
 # 'less' configuration for man pages
 #export LESS="--RAW-CONTROL-CHARS"
 #export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green

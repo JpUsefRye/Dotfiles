@@ -251,6 +251,14 @@ function! s:autosave(enable)
   augroup END
 endfunction
 
+function! Repeat()
+    let times = input("Count: ")
+    let char  = input("Char: ")
+    exe ":normal a" . repeat(char, times)
+endfunction
+
+imap <C-u> <C-o>:call Repeat()<cr>
+
 command! -bang AutoSave call s:autosave(<bang>1)
 
 " Moving lines
