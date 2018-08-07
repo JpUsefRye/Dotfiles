@@ -1,0 +1,11 @@
+Desktop
+Dev
+Documents
+Downloads
+Dropbox
+Music
+Pictures
+PlayOnLinux's virtual drives
+Public
+Templates
+Videos
