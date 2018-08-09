@@ -4,7 +4,7 @@
 set nocompatible                " i don't know what is that doing but it works well
 set encoding=utf-8              " Set default encoding to UTF-8
 
-try                             " You Must Have Tender Color Scheme.
+try
     colorscheme jellybeans
 catch
 endtry
@@ -289,6 +289,8 @@ set undodir=$HOME/.vim/undo     " where to save undo histories
 set undolevels=1000             " How many undo(s)
 set undoreload=10000            " number of lines to save for undo
 set directory=~/.vim/swap/
+set nospell
+
 
 set wildignore=*.o,*~,*.pyc,*.so " ignore compiled files
 set noerrorbells		         " No annoying sound on errors
@@ -298,12 +300,73 @@ set splitright                  " Puts new vertical split windows to the right o
 set splitbelow                  " Puts new split windows to the bottom of the current
 
 
+let python_highlight_all = 1
+au FileType python syn keyword pythonDecorator True None False self
+
+au BufNewFile,BufRead *.jinja set syntax=htmljinja
+au BufNewFile,BufRead *.mako set ft=mako
+
+au FileType python map <buffer> F :set foldmethod=indent<cr>
+
+au FileType python inoremap <buffer> $r return
+au FileType python inoremap <buffer> $i import
+au FileType python inoremap <buffer> $p print
+au FileType python inoremap <buffer> $f # --- <esc>a
+au FileType python map <buffer> <leader>1 /class
+au FileType python map <buffer> <leader>2 /def
+au FileType python map <buffer> <leader>C ?class
+au FileType python map <buffer> <leader>D ?def
+au FileType python set cindent
+au FileType python set cinkeys-=0#
+au FileType python set indentkeys-=0#
+
+
+""""""""""""""""""""""""""""""
+" => JavaScript section
+"""""""""""""""""""""""""""""""
+au FileType javascript call JavaScriptFold()
+au FileType javascript setl fen
+au FileType javascript setl nocindent
+
+au FileType javascript imap <c-t> $log();<esc>hi
+au FileType javascript imap <c-a> alert();<esc>hi
+
+au FileType javascript inoremap <buffer> $r return
+au FileType javascript inoremap <buffer> $f // --- PH<esc>FP2xi
+
+function! JavaScriptFold()
+    setl foldmethod=syntax
+    setl foldlevelstart=1
+    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+
+    function! FoldText()
+        return substitute(getline(v:foldstart), '{.*', '{...}', '')
+    endfunction
+    setl foldtext=FoldText()
+endfunction
+
+
+""""""""""""""""""""""""""""""
+" => CoffeeScript section
+"""""""""""""""""""""""""""""""
+function! CoffeeScriptFold()
+    setl foldmethod=indent
+    setl foldlevelstart=1
+endfunction
+au FileType coffee call CoffeeScriptFold()
+
+au FileType gitcommit call setpos('.', [0, 1, 1, 0])
+
 " Sadly i will start using plugins
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'https://github.com/terryma/vim-multiple-cursors'
 Plug 'https://github.com/w0rp/ale.git'
+Plug 'https://github.com/RRethy/vim-illuminate'
+Plug 'https://github.com/scrooloose/nerdtree'
+Plug 'mhinz/vim-startify'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 let g:multi_cursor_use_default_mapping=0
 
@@ -324,5 +387,8 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 let g:ale_sign_error = '->'
 let g:ale_sign_warning = '!!'
+let g:ale_enabled = 0
+
+let g:Illuminate_delay = 250
 
 call plug#end()
