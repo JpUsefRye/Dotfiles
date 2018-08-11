@@ -511,6 +511,7 @@ export AR=ar
 export CXX=g++
 export LD=ld
 export TAR=tar
+export LIBGL_ALWAYS_SOFTWARE=on
 export XDG_CURRENT_DESKTOP='X-Generic'
 export QT_X11_NO_MITSHM=1 # fixes the issue when opening qt app with sudo
 export PATH="$PATH:$HOME/go/bin"
