@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="Disassembler"
 
 LANG=en_US.UTF-8
-MYNAME=MalSym                   # replace this with your name
+MYNAME=${USER}                  # replace this with your name
 RESOLUTION=1366x768             # replace this with your display size (for ffmpeg)
 
 # If not running interactively, don't do anything
@@ -325,10 +325,9 @@ function gi() {
     curl -L -s https://www.gitignore.io/api/${@}
 }
 
-# get lyrics
-function lyric(){
-    { [ -z "{$1}" ] || [ -z "${2}" ] } && { 2>&1 echo 'usage lyric <artist> <title>'; return 1 }
-    curl -s --get "https://makeitpersonal.co/lyrics" --data-urlencode "artist=$1" --data-urlencode "title=$2"
+# FUCK ISPs
+function start-tor-service(){
+    sudo chroot --userspec=tor:tor /opt/torchroot /usr/bin/tor
 }
 
 # FFmpeg Stuff
@@ -465,9 +464,35 @@ setopt correct # spelling correction for commands
 
 # Sources
 source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /etc/profile.d/jre.sh
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(brackets main pattern)
+
+# ZSH highlight style.
+ZSH_HIGHLIGHT_STYLES[unknown-token]='none,none'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[suffix-alias]='underline'
+ZSH_HIGHLIGHT_STYLES[precommand]='underline'
+ZSH_HIGHLIGHT_STYLES[globbing]='none'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='none'
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]='none'
+ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]='none'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]='none'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[rc-quote]='none'
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[assign]='none'
+ZSH_HIGHLIGHT_STYLES[redirection]='none'
+ZSH_HIGHLIGHT_STYLES[comment]='fg=black,bold'
+ZSH_HIGHLIGHT_STYLES[named-fd]='none'
+ZSH_HIGHLIGHT_STYLES[arg0]='none'
+
 # 'less' configuration for man pages
 #export LESS="--RAW-CONTROL-CHARS"
 #export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
@@ -485,8 +510,8 @@ source /etc/profile.d/jre.sh
 #export LESS_TERMCAP_ZW=$(tput rsupm)
 #export GROFF_NO_SGR=1         # For Konsole and Gnome-terminal
 
-if [ -f ~/.zcompdump-$HOST-5.5.1 ]; then
-    rm ~/.zcompdump-$HOST-5.5.1
+if [ -f ~/.zcompdump-$HOST-5.6.2 ]; then
+    rm ~/.zcompdump-$HOST-5.6.2
 fi
 
 if [ -f ~/.zcompdump ]; then
@@ -504,6 +529,7 @@ PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 ZSH_DISABLE_COMPINIT=true
 export ZSH_DISABLE_COMPINIT
 export EDITOR="vim"
+export GOPATH=$HOME/go
 export BROWSER="firefox"
 export CC=gcc
 export AS=as
