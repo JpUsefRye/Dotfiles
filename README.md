@@ -2,61 +2,36 @@
 
 **NOTE**:
 ```
-the [.bashrc/.zshrc] designed for arch linux
+the [.zshrc] designed for arch linux
 if you use other linux distro or OSX just remove PACMAN ALIASES section
 and all wil be fine
 if you use zsh you must have oh-my-zsh installed
 ```
 
-# what inside this repo
-in this repo there is my personal vim configuration that i use to code ([.vimrc](.vimrc)).
-
-there is my [.gdbinit](.gdbinit) file that i use in debugging and reverse engineering, user interface from [GDB-Dashboard](https://github.com/cyrus-and/gdb-dashboard) extension and the configurations is by me and some people.
-
-i used [.bashrc](.bashrc) alot for my shell but now i am [.zshrc](.zshrc) fan.
-
-# Tested On
-* Arch Linux (currently running)
-* Kali Linux
-
-#### Required
-
-- cowsay
-
-- fortune
-
-- figlet
-
-- tput
-
-- python
-
-### Installation
-
-```shell
-git clone https://github.com/MaliciouSSymbol/Dotfiles.git && cd Dotfiles
-
-chmod +x install.py
-
-# to install the .vimrc run this command
-$ (sleep 1; echo 1; cat) | python install.py vim
-
-# to install vim tender colorscheme
-$ (sleep 1; echo 2; echo 1; cat) | python install.py vim
-
-# to install vim jellybeans colorscheme
-$ (sleep 1; echo 2; echo 2; cat) | python install.py vim
-
-# to install .bashrc
-$ (sleep 1; echo 1; cat) | python install.py shell
-
-# to install .zshrc (requires oh-my-zsh)
-$ (sleep 1; echo 2; cat) | python install.py shell
-
+### LICENSE (public domain)
 ```
+This is free and unencumbered software released into the public domain.
 
-### Contribution
-all pull requests & issues are welcomed :)
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
 
-### LICENSE
-the whole repo is released under GPL3
+In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to [http://unlicense.org]
+```
