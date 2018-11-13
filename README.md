@@ -8,8 +8,6 @@ and all wil be fine
 if you use zsh you must have oh-my-zsh installed
 ```
 
-![terminal](photo.png)
-
 # what inside this repo
 in this repo there is my personal vim configuration that i use to code ([.vimrc](.vimrc)).
 
@@ -62,5 +60,3 @@ all pull requests & issues are welcomed :)
 
 ### LICENSE
 the whole repo is released under GPL3
-
-this repo containing code from gdb-dashboard licensed on MIT
