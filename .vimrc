@@ -34,6 +34,7 @@ set shiftwidth=4
 set copyindent                  " copy the previous indentation on auto indenting
 
 set hidden
+set nowrap
 set fileformats=unix,dos,mac   " support all three, in this order
 set cursorline
 
@@ -290,7 +291,7 @@ set undolevels=1000             " How many undo(s)
 set undoreload=10000            " number of lines to save for undo
 set directory=~/.vim/swap/
 set nospell
-
+set ttymouse=xterm2
 
 set wildignore=*.o,*~,*.pyc,*.so " ignore compiled files
 set noerrorbells		         " No annoying sound on errors
@@ -369,6 +370,11 @@ Plug 'mhinz/vim-startify'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 let g:multi_cursor_use_default_mapping=0
+
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
 
 " Default mapping for multi cursor plugin
 let g:multi_cursor_start_word_key      = '<C-n>'

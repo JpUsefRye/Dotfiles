@@ -9,6 +9,10 @@ RESOLUTION=1366x768             # replace this with your display size (for ffmpe
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# TMUX shit here
+if command -v tmux &> /dev/null && [ -n "$PROMPT" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+    exec tmux
+fi
 
 # zsh insulter
 function print_message () {
@@ -468,7 +472,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /etc/profile.d/jre.sh
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(brackets main pattern)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main)
 
 # ZSH highlight style.
 ZSH_HIGHLIGHT_STYLES[unknown-token]='none,none'
@@ -528,6 +532,7 @@ PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 ZSH_DISABLE_COMPINIT=true
 export ZSH_DISABLE_COMPINIT
+export TERM=xterm-256color
 export EDITOR="vim"
 export GOPATH=$HOME/go
 export BROWSER="firefox"
