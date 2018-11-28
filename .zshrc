@@ -295,7 +295,6 @@ alias free='free -m'                # show sizes in MB
 alias grep='grep --color=auto'
 alias mkdir='mkdir -p -v'
 alias nano='nano -w'
-alias ping='ping -c 5'
 # END MODIFIED COMMANDS
 
 # OTHER
@@ -397,17 +396,17 @@ function shrainbow(){
     done;
 }
 
-# Terminal Interface
-figlet -f ~/.fonts/Modular.flf "${MYNAME}"
-fortune | cowsay -f moose
-IFS='=' OS_NAME_COLOR__=($(cat /etc/os-release|grep ANSI_COLOR))
-IFS='=' OS_NAME__=($(cat /etc/os-release|grep PRETTY_NAME))
+#--- Terminal Interface ---#
+# figlet -f ~/.fonts/Modular.flf "${MYNAME}\n"
+# fortune | cowsay -f moose
+# IFS='=' OS_NAME_COLOR__=($(cat /etc/os-release|grep ANSI_COLOR))
+# IFS='=' OS_NAME__=($(cat /etc/os-release|grep PRETTY_NAME))
 
-echo -ne "Running on:\t\t \033[$(python -c "print('`echo $OS_NAME_COLOR__[2]`'.replace('\"', ''))")m$(python -c "print('`echo $OS_NAME__[2]`'.replace('\"', ''))")\033[0m\n" # fuck bash fuck zsh
+# echo -ne "Running on:\t\t \033[$(python -c "print('`echo $OS_NAME_COLOR__[2]`'.replace('\"', ''))")m$(python -c "print('`echo $OS_NAME__[2]`'.replace('\"', ''))")\033[0m\n" # fuck bash fuck zsh
+# echo -ne "Today is:\t\t" `date`; echo ""<<< Today
+# echo -e "Kernel Information: \t" `uname -smr`
 
-echo -ne "Today is:\t\t" `date`; echo ""<<< Today
-echo -e "Kernel Information: \t" `uname -smr`
-# END Terminal Interface
+#--- END Terminal Interface ---#
 
 # Sometimes i use this or not?...
 Black='\033[0;30m'        # Black
@@ -496,23 +495,6 @@ ZSH_HIGHLIGHT_STYLES[redirection]='none'
 ZSH_HIGHLIGHT_STYLES[comment]='fg=black,bold'
 ZSH_HIGHLIGHT_STYLES[named-fd]='none'
 ZSH_HIGHLIGHT_STYLES[arg0]='none'
-
-# 'less' configuration for man pages
-#export LESS="--RAW-CONTROL-CHARS"
-#export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
-#export LESS_TERMCAP_md=$(tput bold; tput setaf 6) # cyan
-#export LESS_TERMCAP_me=$(tput sgr0)
-#export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4) # yellow on blue
-#export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
-#export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7) # white
-#export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
-#export LESS_TERMCAP_mr=$(tput rev)
-#export LESS_TERMCAP_mh=$(tput dim)
-#export LESS_TERMCAP_ZN=$(tput ssubm)
-#export LESS_TERMCAP_ZV=$(tput rsubm)
-#export LESS_TERMCAP_ZO=$(tput ssupm)
-#export LESS_TERMCAP_ZW=$(tput rsupm)
-#export GROFF_NO_SGR=1         # For Konsole and Gnome-terminal
 
 if [ -f ~/.zcompdump-$HOST-5.6.2 ]; then
     rm ~/.zcompdump-$HOST-5.6.2
