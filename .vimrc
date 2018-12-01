@@ -1,21 +1,15 @@
 set nocompatible                " i don't know what is that doing but it works well
 set encoding=utf-8              " Set default encoding to UTF-8
-
-try
-    colorscheme ron
-catch
-endtry
+set background=dark
 
 syntax on                       " Enable syntax
 filetype plugin indent on       " Enable indenting
 filetype plugin on
 
 
-set background=dark
 set number                      " Numbering the lines
 set textwidth=80                " Set text width to 80
 set numberwidth=4               " Set number width to 4
-" set relativenumber
 
 set incsearch                   " Find the next match as we type the search
 set hlsearch                    " Highlight searches by default
@@ -34,9 +28,8 @@ set copyindent                  " copy the previous indentation on auto indentin
 set hidden
 set nowrap
 set fileformats=unix,dos,mac   " support all three, in this order
-" set cursorline
 
-set foldmethod=syntax
+set foldmethod=manual
 set foldlevel=7
 set tags=tags;
 set clipboard=unnamedplus
@@ -136,7 +129,7 @@ filetype on                     " Enable file type detection
 filetype indent on              " Enable file type-specific indenting
 filetype plugin on              " Enable file type-specific plugins
 
-set history=50		            " keep 50 lines of command line history
+set history=72		            " keep 72 lines of command line history
 set undofile                    " Save undo(s) after file closes
 set undodir=$HOME/.vim/undo     " where to save undo histories
 set undolevels=1000             " How many undo(s)
@@ -177,36 +170,21 @@ au FileType javascript imap <c-a> alert();<esc>hi
 au FileType javascript inoremap <buffer> $r return
 au FileType javascript inoremap <buffer> $f // --- PH<esc>FP2xi
 
-function! JavaScriptFold()
-    setl foldmethod=syntax
-    setl foldlevelstart=1
-    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-
-    function! FoldText()
-        return substitute(getline(v:foldstart), '{.*', '{...}', '')
-    endfunction
-    setl foldtext=FoldText()
-endfunction
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'https://github.com/terryma/vim-multiple-cursors'
 Plug 'https://github.com/RRethy/vim-illuminate'
 Plug 'https://github.com/scrooloose/nerdtree'
-Plug 'mhinz/vim-startify'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
+call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-call plug#end()
-
-
 highlight pythonSpaceError ctermfg=0
 highlight Normal ctermfg=white
+highlight Comment ctermfg=green
 
-" set noshowmode
-" set noruler
-" set laststatus=0
-
+let g:airline_section_z = '%3p%% %#__accent_bold#%{g:airline_symbols.linenr}%4l%#__restore__#%#__accent_bold#/%L%#__restore__# :%3v'

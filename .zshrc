@@ -475,7 +475,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main)
 
 # ZSH highlight style.
 ZSH_HIGHLIGHT_STYLES[unknown-token]='none,none'
-ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=none,none'
 ZSH_HIGHLIGHT_STYLES[suffix-alias]='underline'
 ZSH_HIGHLIGHT_STYLES[precommand]='underline'
 ZSH_HIGHLIGHT_STYLES[globbing]='none'
