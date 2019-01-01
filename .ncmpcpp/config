@@ -1,0 +1,4 @@
+mpd_music_dir = "~/Music"
+ncmpcpp_directory  = ~/.ncmpcpp
+mpd_host = "localhost"
+mpd_port = "6600"
