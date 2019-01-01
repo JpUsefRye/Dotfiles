@@ -1,5 +1,7 @@
  My Personal Dotfiles
 
+![screenshot](screenshot.png)
+
 **NOTE**:
 ```
 the [.zshrc] designed for arch linux
