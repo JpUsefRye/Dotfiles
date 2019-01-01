@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo "News"
+
+# i3blocks news module.
+# Displays number of unread news
+
+case $BLOCK_BUTTON in
+        1) firefox nytimes.com ;;
+        3) notify-send "📰 News module:" "
+- open firefox with nytimes" ;;
+esac

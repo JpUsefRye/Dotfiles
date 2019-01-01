@@ -1,0 +1,9 @@
+#!/bin/sh
+
+date '+%Y %b %d (%a) %I:%M:%S %p'
+
+case $BLOCK_BUTTON in
+	1) terminator -x calcurse ;;
+	3) notify-send "📅 Time/date module:" "
+- opens gnome calendar" ;;
+esac

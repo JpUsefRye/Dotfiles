@@ -1,0 +1,26 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) pulsemixer & ;;
+	2) amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks ;;
+	4) amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks    ;;
+	5) amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks    ;;
+	3) notify-send "📢 Volume module:" "
+- Shows volume 🔊, 🔇 if muted.
+- Middle click to mute.
+- Scroll to change."
+esac
+
+[ "$(awk '/muted/ {print $2}' <(pacmd list-sinks))" = "yes" ] && printf "🔇\\n" && exit
+
+vol=$(amixer get Master|awk '$0~/%/{print $5}'|tr -d '[]%'|head -n 1)
+
+if [ "$vol" -gt "70" ]; then
+	icon="🔊"
+elif [ "$vol" -lt "30" ]; then
+	icon="🔈"
+else
+	icon="🔉"
+fi
+
+printf "%s %s%%\\n" "$icon" "$vol"
