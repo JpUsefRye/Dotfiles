@@ -29,7 +29,7 @@ exec always feh --bg-scale ~/Pictures/Wallpapers/wall.jpg
 exec always compton
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:monospace
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -92,9 +92,15 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+t layout toggle split
+
+# fast resize
+bindsym $mod+Shift+y		exec --no-startup-id ~/.scripts/i3cmds/i3resize left
+bindsym $mod+Shift+u		exec --no-startup-id ~/.scripts/i3cmds/i3resize down
+bindsym $mod+Shift+i		exec --no-startup-id ~/.scripts/i3cmds/i3resize up
+bindsym $mod+Shift+o		exec --no-startup-id ~/.scripts/i3cmds/i3resize right
+
+bindsym $mod+o			sticky toggle
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -152,6 +158,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+bindsym $mod+Shift+w exec --no-startup-id $BROWSER
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -160,12 +168,6 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
@@ -179,7 +181,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym $mod+Shift+x exec i3lock
+bindsym $mod+Shift+x    exec i3lock
+
+bindsym $mod+g          gaps inner current plus 5
+bindsym $mod+Shift+g        gaps inner current minus 5
 
 # Set Xresources colors:
 set_from_resource $darkblack	color0  #000000
@@ -208,7 +213,8 @@ client.urgent		$darkred	$darkred	$black		$darkred		$darkred
 client.background $black
 
 bar {
-	font pango:mono 10
+	font pango:DejaVu Sans Mono 10
+
 	colors {
 			background $darkblack
 			statusline $darkwhite
@@ -219,6 +225,7 @@ bar {
         		urgent_workspace   $darkblack $darkblack $white
 		}
 	status_command i3blocks
+	i3bar_command i3bar -t
 	position top
 	mode dock
 	modifier None
@@ -232,9 +239,13 @@ bindsym $mod+Scroll_Lock	exec --no-startup-id "killall screenkey || screenkey"
 bindsym $mod+Delete		exec $stoprec
 bindsym XF86Launch1		exec --no-startup-id xset dpms force off
 
-bindsym XF86AudioMute		exec pactl set-sink-mute toggle
-bindsym XF86AudioLowerVolume	exec pactl set-sink-volume 0 -10%
-bindsym XF86AudioRaiseVolume	exec pactl set-sink-volume 0 +10%
+bindsym $mod+i exec $term -x htop
+bindsym $mod+Shift+f exec $term -x ranger
+
+# change volume or toggle mute
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
 
 bindsym XF86PowerOff		exec prompt "Shutdown computer?" "$shutdown"
 ##bindsym XF86Copy		exec

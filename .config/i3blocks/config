@@ -4,32 +4,21 @@ markup=pango
 
 [music]
 label=🎼
-interval=once
+interval=1
 signal=11
-
-
-
-[news]
-label=📰
-interval=once
-signal=6
 
 [pacpackages]
 label=📦
 interval=once
 signal=8
 
-[torrent]
-interval=20
-signal=7
+[news]
+label=📰
+interval=once
+signal=6
 
-[weather]
-interval=3600
-
-[mailbox]
-label=📬
-interval=180
-signal=12
+#[weather]
+#interval=3600
 
 #[memory]
 #interval=30
@@ -40,28 +29,27 @@ signal=12
 #label=💻
 
 [volume]
-interval=once
+interval=1
 signal=10
 
 #[disk]
 #interval=60
 #command=disk /
 
-#[disk]
-#interval=60
-#command=disk /home 🏠
-
-[battery]
-command=battery BAT0
-interval=5
-
 [clock]
 label=📅
 interval=30
 
+[disk]
+interval=60
+command=disk /home 🏠
+
 [internet]
 interval=10
 
-[help]
-interval=once
+[battery]
+command=~/.scripts/statusbar/battery BAT1
+interval=5
 
+[username]
+interval=once
