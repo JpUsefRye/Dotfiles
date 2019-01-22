@@ -1,0 +1,10 @@
+
+case $BLOCK_BUTTON in
+    3) notify-send "Brightness Module: " "
+         - increase the brightness
+         - Decrease the brightness";;
+    4) btightness +5 ;;
+    5) brightness -5 ;;
+esac
+
+echo "🔆 $new_brightness"

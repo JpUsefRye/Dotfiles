@@ -9,13 +9,8 @@ signal=11
 
 [pacpackages]
 label=📦
-interval=once
+interval=10
 signal=8
-
-[news]
-label=📰
-interval=once
-signal=6
 
 #[weather]
 #interval=3600
@@ -28,21 +23,13 @@ signal=6
 #interval=15
 #label=💻
 
+[clock]
+label=📅
+interval=1
+
 [volume]
 interval=1
 signal=10
-
-#[disk]
-#interval=60
-#command=disk /
-
-[clock]
-label=📅
-interval=30
-
-[disk]
-interval=60
-command=disk /home 🏠
 
 [internet]
 interval=10
@@ -51,5 +38,3 @@ interval=10
 command=~/.scripts/statusbar/battery BAT1
 interval=5
 
-[username]
-interval=once

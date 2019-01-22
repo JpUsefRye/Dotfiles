@@ -514,7 +514,7 @@ PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 ZSH_DISABLE_COMPINIT=true
 export ZSH_DISABLE_COMPINIT
-export TERM=xterm-256color
+export TERM=tmux-256color
 export TERMINAL=terminator
 export EDITOR="vim"
 export GOPATH=$HOME/go
