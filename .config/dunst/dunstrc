@@ -34,7 +34,7 @@
     padding = 20
     horizontal_padding = 20
     separator_color = frame
-    startup_notification = true
+    startup_notification = false
     # dmenu = /usr/bin/dmenu -p dunst:
     browser = /usr/bin/firefox
     icon_position = left
@@ -50,14 +50,14 @@
 [urgency_low]
     background = "#282828"
     foreground = "#ebdbb2"
-    timeout = 5
+    timeout = 15
 
 [urgency_normal]
     background = "#282828"
     foreground = "#ebdbb2"
-    timeout = 5
+    timeout = 15
 
 [urgency_critical]
     background = "#282828"
     foreground = "#ebdbb2"
-    timeout = 5
+    timeout = 15

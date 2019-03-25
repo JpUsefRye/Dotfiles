@@ -134,7 +134,6 @@ fi
 ##########################################################
 
 # PACMAN ALIASES
-alias pacman="pacman --color auto" # pacman have colors!
 alias pacupg='pacman -Syu' # Synchronize with repositories and then upgrade packages that are out of date
 alias pacupd='pacman -Sy'  # Refresh of all package lists after updating /etc/pacman.d/mirrorlist
 alias pacin='pacman -S'    # Install specific package(s) from the repositories
@@ -467,7 +466,6 @@ setopt correct # spelling correction for commands
 
 # Sources
 source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /etc/profile.d/jre.sh
 
