@@ -215,6 +215,10 @@ fi
 
 # END PACMAN HELPER FUNCTIONS
 
+# Some usefull aliases for sysadmin stuff
+alias nse="ls /usr/share/nmap/scripts/|grep "
+alias glog="git log --color --all --date-order --decorate --dirstat=lines,cumulative --stat|less -R"
+
 # AUTOCOLOR
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
