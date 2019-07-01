@@ -6,7 +6,6 @@ syntax on                       " Enable syntax
 filetype plugin indent on       " Enable indenting
 filetype plugin on
 
-
 set number                      " Numbering the lines
 set textwidth=80                " Set text width to 80
 set numberwidth=4               " Set number width to 4
@@ -37,6 +36,8 @@ set clipboard=unnamedplus
 set expandtab
 set smarttab
 set backspace=indent,eol,start
+
+let mapleader = "," " <leader> is ','
 
 if has('mouse')
   set mouse=a
@@ -119,6 +120,12 @@ endfunction
 
 imap <C-u> <C-o>:call Repeat()<cr>
 
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 set magic                       " Does some magic ;-) Newline characters...
 set spell                       " Spell checking is on by default.
 set number                      " Enable line numbering
@@ -176,6 +183,8 @@ Plug 'https://github.com/terryma/vim-multiple-cursors'
 Plug 'https://github.com/RRethy/vim-illuminate'
 Plug 'https://github.com/scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdcommenter'
+
 
 call plug#end()
 
@@ -188,3 +197,6 @@ highlight Normal ctermfg=white
 highlight Comment ctermfg=green
 
 let g:airline_section_z = '%3p%% %#__accent_bold#%{g:airline_symbols.linenr}%4l%#__restore__#%#__accent_bold#/%L%#__restore__# :%3v'
+
+
+let g:NERDCustomDelimiters = { 'c': { 'left': '/* ','right': ' */' } }
