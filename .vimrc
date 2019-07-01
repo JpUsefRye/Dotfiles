@@ -37,8 +37,6 @@ set expandtab
 set smarttab
 set backspace=indent,eol,start
 
-let mapleader = "," " <leader> is ','
-
 if has('mouse')
   set mouse=a
 endif
