@@ -1,0 +1,32 @@
+[global_config]
+  homogeneous_tabbar = False
+  inactive_color_offset = 1.0
+  scroll_tabbar = True
+  tab_position = hidden
+  title_hide_sizetext = True
+  title_inactive_bg_color = "#000000"
+  title_transmit_bg_color = "#2e3436"
+  title_use_system_font = False
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    audible_bell = True
+    background_darkness = 0.88
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = Noto Mono Bold 9
+    palette = "#000000:#cc0000:#4e9a06:#edd400:#3e7ad8:#a434b6:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#4d6ce8:#ad7fa8:#34e2e2:#eeeeec"
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
