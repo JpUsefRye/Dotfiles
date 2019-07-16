@@ -1,0 +1,21 @@
+sw_volume: 12
+audio_device_state:1:Alsa for audio sound card
+state: pause
+current: 0
+time: 1.479000
+random: 0
+repeat: 1
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:MassWaves/Omnia - Fee Ra Huri.mp3
+1:MassWaves/FAUN - Federkleid.mp3
+2:MassWaves/Faun - Tanz mit mir.mp3
+3:MassWaves/SKÁLD - Rún.mp3
+4:MassWaves/Shakira - Hips Don't Lie.mp3
+5:MassWaves/Wardruna - Voluspá.mp3
+6:MassWaves/O-Zone - Dragostea Din Tei.mp3
+playlist_end
