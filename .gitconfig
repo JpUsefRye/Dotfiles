@@ -1,0 +1,20 @@
+[user]
+	name = M1cR0xft
+	email = youssefheshamhassan@gmail.com
+
+[alias]
+    a = add --all
+    c = commit
+    st = status
+    co = checkout
+    up = pull --rebase=merges
+    g = grep --break --heading --line-number
+    fa = fetch --all
+    p = push
+    pf = push -f
+
+[merge]
+    tool = vimdiff
+
+[mergetool]
+    keepBackup = false
