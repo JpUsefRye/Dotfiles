@@ -1,4 +1,3 @@
-### Vim ###
 # Swap
 [._]*.s[a-v][a-z]
 [._]*.sw[a-p]
@@ -10,12 +9,12 @@
 Session.vim
 Sessionx.vim
 
-.vim/autoload/
-.vim/colors/
+# ignore
 .vim/plugged/
-
-# mpd
-.config/mpd/playlists
+.vim/doc
+.vim/spell
+.vim/swap
+.vim/syntax
 
 # Temporary
 .netrwhist
@@ -25,4 +24,7 @@ tags
 # Persistent undo
 [._]*.un~
 
+# mpd
+.config/mpd/playlists
+*.log
 
