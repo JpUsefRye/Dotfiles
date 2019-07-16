@@ -14,6 +14,9 @@ Sessionx.vim
 .vim/colors/
 .vim/plugged/
 
+# mpd
+.config/mpd/playlists
+
 # Temporary
 .netrwhist
 *~
