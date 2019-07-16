@@ -34,8 +34,8 @@
     padding = 20
     horizontal_padding = 20
     separator_color = frame
-    startup_notification = false
-    # dmenu = /usr/bin/dmenu -p dunst:
+    startup_notification = true
+    dmenu = /usr/bin/dmenu -p dunst:
     browser = /usr/bin/firefox
     icon_position = left
     icon_path = /usr/share/icons/Papirus/32x32/actions/:/usr/share/icons/Papirus/32x32/mimetypes/
@@ -46,6 +46,8 @@
 [shortcuts]
     close = ctrl+space
     close_all = ctrl+shift+space
+    history = mod4+plus
+    context = mod4+shift+plus
 
 [urgency_low]
     background = "#282828"
