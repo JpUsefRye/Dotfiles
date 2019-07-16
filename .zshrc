@@ -1,6 +1,7 @@
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="Disassembler"
+# this zsh theme is found in my github repo [https://github.com/M1cR0xft/Dotfiles]
+ZSH_THEME="elfasheekh"
 
 LANG=en_US.UTF-8
 MYNAME=${USER}                  # replace this with your name
