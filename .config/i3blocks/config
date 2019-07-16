@@ -1,6 +1,15 @@
 command=~/.scripts/statusbar/$BLOCK_NAME
-separator_block_width=15
 markup=pango
+separator=false
+separator_block_width=10
+border_top=0
+border_left=0
+border_right=0
+border_bottom=2
+
+[output]
+interval=60
+signal=4
 
 [music]
 label=🎼
@@ -11,6 +20,7 @@ signal=11
 label=📦
 interval=10
 signal=8
+border=#efc681
 
 #[weather]
 #interval=3600
@@ -23,18 +33,36 @@ signal=8
 #interval=15
 #label=💻
 
-[clock]
-label=📅
-interval=1
+#[volume]
+#interval=1
+#signal=10
 
 [volume]
-interval=1
-signal=10
+label=
+command=[[ -z "${BLOCK_BUTTON}" ]] || ( [[ "${BLOCK_BUTTON}" == "1" ]] && ((/usr/bin/pavucontrol -t 3 --name "pavucontrol-bar" || true) && $HOME/.scripts/volume_control.py signal) || $HOME/scripts/volume_control.py toggle ); $HOME/scripts/volume_control.py i3blocks
+interval=5
+signal=1
+markup=pango
+border=#cc241d
 
-[internet]
-interval=10
+[wireless]
+label=
+command=[[ -z "$(iwgetid -r)" ]] || echo "$(iwgetid -r) "
+interval=2
+border=#98971a
+
+# [internet]
+# interval=10
 
 [battery]
 command=~/.scripts/statusbar/battery BAT1
-interval=5
+interval=persist
+border=#458588
 
+[time]
+label=
+command=echo "`date +'%a %d %b'` <b>`date +'%T'`</b> "; [[ -z "${BLOCK_BUTTON}" ]] || gsimplecal &
+interval=1
+markup=pango
+border=#928374
+separator_block_width=0
