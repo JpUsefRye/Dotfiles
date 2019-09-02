@@ -158,64 +158,6 @@ alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 # END CD ALIASES
 
-# PACMAN HELPER FUNCTIONS
-
-function paclist() {
-  # Source: https://bbs.archlinux.org/viewtopic.php?id=93683
-  LC_ALL=C pacman -Qei $(pacman -Qu | cut -d " " -f 1) | \
-    awk 'BEGIN {FS=":"} /^Name/{printf("\033[1;36m%s\033[1;37m", $2)} /^Description/{print $2}'
-}
-
-function pacdisowned() {
-  emulate -L zsh
-
-  tmp=${TMPDIR-/tmp}/pacman-disowned-$UID-$$
-  db=$tmp/db
-  fs=$tmp/fs
-
-  mkdir "$tmp"
-  trap  'rm -rf "$tmp"' EXIT
-
-  pacman -Qlq | sort -u > "$db"
-
-  find /bin /etc /lib /sbin /usr ! -name lost+found \
-    \( -type d -printf '%p/\n' -o -print \) | sort > "$fs"
-
-  comm -23 "$fs" "$db"
-}
-
-function pacmanallkeys() {
-  emulate -L zsh
-  curl -s https://www.archlinux.org/people/{developers,trustedusers}/ | \
-    awk -F\" '(/pgp.mit.edu/) { sub(/.*search=0x/,""); print $1}' | \
-    xargs sudo pacman-key --recv-keys
-}
-
-function pacmansignkeys() {
-  emulate -L zsh
-  for key in $*; do
-    sudo pacman-key --recv-keys $key
-    sudo pacman-key --lsign-key $key
-    printf 'trust\n3\n' | sudo gpg --homedir /etc/pacman.d/gnupg \
-      --no-permission-warning --command-fd 0 --edit-key $key
-  done
-}
-
-if (( $+commands[xdg-open] )); then
-  function pacweb() {
-    pkg="$1"
-    infos="$(pacman -Si "$pkg")"
-    if [[ -z "$infos" ]]; then
-      return
-    fi
-    repo="$(grep '^Repo' <<< "$infos" | grep -oP '[^ ]+$')"
-    arch="$(grep '^Arch' <<< "$infos" | grep -oP '[^ ]+$')"
-    xdg-open "https://www.archlinux.org/packages/$repo/$arch/$pkg/" &>/dev/null
-  }
-fi
-
-# END PACMAN HELPER FUNCTIONS
-
 # Some usefull aliases for sysadmin stuff
 alias nse="ls /usr/share/nmap/scripts/|grep "
 alias glog="git log --color --all --date-order --decorate --dirstat=lines,cumulative --stat|less -R"
@@ -233,7 +175,6 @@ alias ls="ls --color=auto"
 alias ll="ls -l"
 alias lr='ls -R'
 alias la='ll -A'
-alias lm='la | less'       # la but in 'less'
 alias lx='ls -lXB'         # Sort by extension
 alias lk='ls -lSr'         # Sort by size, biggest last
 alias lc='ls -ltcr'        # Sort by and show change time, most recent last
@@ -296,18 +237,12 @@ alias violenz='git rebase'
 alias df='df -h'
 alias du='du -c -h'
 alias free='free -m'                # show sizes in MB
-alias grep='grep --color=auto'
-alias mkdir='mkdir -p -v'
-alias nano='nano -w'
 # END MODIFIED COMMANDS
 
-# OTHER
-alias hello="echo 'Not you again'"
 alias vi="vim"
 alias open="xdg-open"
 alias less="less -R"
 alias fuckmylife=":(){ :|: & };:" # do not fuck your life
-# END Other
 
 # Vim every where
 function :q() {
@@ -332,13 +267,7 @@ function gi() {
     curl -L -s https://www.gitignore.io/api/${@}
 }
 
-# FUCK ISPs
-function start-tor-service(){
-    sudo chroot --userspec=tor:tor /opt/torchroot /usr/bin/tor
-}
-
 # FFmpeg Stuff
-
 function scrncast(){
     # record screen with audio
     # arguments:
@@ -388,11 +317,6 @@ function gifconverter(){
 }
 
 # Misc
-
-function ngrokserve(){
-     ngrok http 127.0.0.1:${1} -host-header="127.0.0.1:${1}"
-}
-
 function shrainbow(){
     (seq 231 -1 16) | while read i; do
         printf "\x1b[48;5;${i}m\n";
@@ -413,36 +337,36 @@ function shrainbow(){
 #--- END Terminal Interface ---#
 
 # Sometimes i use this or not?...
-Black='\033[0;30m'        # Black
-Red='\033[0;31m'          # Red
-Green='\033[0;32m'        # Green
-Yellow='\033[0;33m'       # Yellow
-Blue='\033[0;34m'         # Blue
-Purple='\033[0;35m'       # Purple
-Cyan='\033[0;36m'         # Cyan
-White='\033[0;37m'        # White
+#Black='\033[0;30m'        # Black
+#Red='\033[0;31m'          # Red
+#Green='\033[0;32m'        # Green
+#Yellow='\033[0;33m'       # Yellow
+#Blue='\033[0;34m'         # Blue
+#Purple='\033[0;35m'       # Purple
+#Cyan='\033[0;36m'         # Cyan
+#White='\033[0;37m'        # White
 
-# Bold
-BBlack='\033[1;30m'       # Black
-BRed='\033[1;31m'         # Red
-BGreen='\033[1;32m'       # Green
-BYellow='\033[1;33m'      # Yellow
-BBlue='\033[1;34m'        # Blue
-BPurple='\033[1;35m'      # Purple
-BCyan='\033[1;36m'        # Cyan
-BWhite='\033[1;37m'       # White
+## Bold
+#BBlack='\033[1;30m'       # Black
+#BRed='\033[1;31m'         # Red
+#BGreen='\033[1;32m'       # Green
+#BYellow='\033[1;33m'      # Yellow
+#BBlue='\033[1;34m'        # Blue
+#BPurple='\033[1;35m'      # Purple
+#BCyan='\033[1;36m'        # Cyan
+#BWhite='\033[1;37m'       # White
 
-# Background
-On_Black='\033[40m'       # Black
-On_Red='\033[41m'         # Red
-On_Green='\033[42m'       # Green
-On_Yellow='\033[43m'      # Yellow
+## Background
+#On_Black='\033[40m'       # Black
+#On_Red='\033[41m'         # Red
+#On_Green='\033[42m'       # Green
+#On_Yellow='\033[43m'      # Yellow
 
-NC="\033[m"               # Color Reset
-CR="$(echo -ne '\r')"
-LF="$(echo -ne '\n')"
-TAB="$(echo -ne '\t')"
-ESC="$(echo -ne '\033')"
+#NC="\033[m"               # Color Reset
+#CR="$(echo -ne '\r')"
+#LF="$(echo -ne '\n')"
+#TAB="$(echo -ne '\t')"
+#ESC="$(echo -ne '\033')"
 
 # XDG stuff
 XDG_DESKTOP_DIR="$HOME/Desktop"
