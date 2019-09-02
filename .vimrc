@@ -16,7 +16,7 @@ set ignorecase                  " Ignore case when searching...
 set smartcase                   " ...unless we type a capital
 set softtabstop=4
 silent! set cryptmethod=blowfish2
-set formatoptions+=1
+set formatoptions+=r
 
 set autoindent
 set smartindent
@@ -62,6 +62,17 @@ endif
 if $COLORTERM == 'truecolor'
     set t_Co=256
 endif
+
+
+"inoremap " ""<left>
+"inoremap ' ''<left>
+"inoremap ( ()<left>
+"inoremap [ []<left>
+"inoremap { {}<left>
+"inoremap {<CR> {<CR>}<ESC>O
+"inoremap {;<CR> {<CR>};<ESC>O
+
+
 
 " ctrl+t create a new tab
 " ctrl+w close current tab
@@ -124,6 +135,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+nmap <leader>ne :NERDTreeToggle<cr>
+
 set magic                       " Does some magic ;-) Newline characters...
 set spell                       " Spell checking is on by default.
 set number                      " Enable line numbering
@@ -167,13 +180,6 @@ au FileType python map <buffer> <leader>D ?def
 au FileType python set cindent
 au FileType python set cinkeys-=0#
 au FileType python set indentkeys-=0#
-au FileType javascript call JavaScriptFold()
-au FileType javascript setl fen
-au FileType javascript setl nocindent
-au FileType javascript imap <c-t> $log();<esc>hi
-au FileType javascript imap <c-a> alert();<esc>hi
-au FileType javascript inoremap <buffer> $r return
-au FileType javascript inoremap <buffer> $f // --- PH<esc>FP2xi
 
 call plug#begin('~/.vim/plugged')
 
@@ -183,18 +189,14 @@ Plug 'https://github.com/scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
 
-
 call plug#end()
-
-let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
 
 highlight pythonSpaceError ctermfg=0
 highlight Normal ctermfg=white
 highlight Comment ctermfg=green
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_z = '%3p%% %#__accent_bold#%{g:airline_symbols.linenr}%4l%#__restore__#%#__accent_bold#/%L%#__restore__# :%3v'
-
-
 let g:NERDCustomDelimiters = { 'c': { 'left': '/* ','right': ' */' } }
+let g:cpp_no_function_highlight = 1
