@@ -1,9 +1,9 @@
 # I3 Configuration
 
 for_window [class="^.*"] border pixel 2
-gaps inner 15
-gaps outer 15
-set $term --no-startup-id terminator
+#gaps inner 15
+#gaps outer 15
+set $term --no-startup-id alacritty
 set $mod Mod4
 set $stoprec --no-startup-id ~/.scripts/i3cmds/dmenurecord kill
 set $shutdown sudo -A shutdown -h now
@@ -23,6 +23,26 @@ for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 for_window [title="^Steam Keyboard$"] floating enable
 for_window [title="Default - Wine desktop"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down $height px
+for_window [class="(?i)qemu-system"] floating enable
+for_window [class="(?i)VirtualBox" title="(?i)Manager"] floating enable
+for_window [class="(?i)VirtualBox"] floating enable
+for_window [class="(?i)blueman"] floating enable
+for_window [class="(?i)pinentry"] floating enable
+for_window [class="(?i)nm-connection-editor"] floating enable
+
+for_window [instance="__nmtui"] floating enable
+
+for_window [class="(?i)pavucontrol"] floating enable, move position mouse
+for_window [class="(?i)pavucontrol" instance="pavucontrol-bar"] move down $height px
+
+
 
 # #---Starting External Scripts---# #
 # Setting the background:
@@ -128,8 +148,6 @@ set $ws7  "7:  "
 set $ws8  "8: "
 set $ws9  "9"
 set $ws10 "10:  "
-
-
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -261,8 +279,8 @@ bindsym $mod+Scroll_Lock	exec --no-startup-id "killall screenkey || screenkey"
 bindsym $mod+Delete		exec $stoprec
 bindsym XF86Launch1		exec --no-startup-id xset dpms force off
 
-bindsym $mod+i         exec $term -x htop
-bindsym $mod+Shift+f   exec $term -x ranger
+bindsym $mod+i         exec $term -e htop
+bindsym $mod+Shift+f   exec $term -e ranger
 
 bindsym $mod+F9        exec --no-startup-id ~/.scripts/i3cmds/dmenumount
 bindsym $mod+F10       exec --no-startup-id ~/.scripts/i3cmds/dmenuumount
@@ -280,7 +298,7 @@ bindsym XF86PowerOff		exec prompt "Shutdown computer?" "$shutdown"
 ##bindsym XF86Paste		exec
 ##bindsym XF86Cut		exec
 ##bindsym XF86MenuKB		exec
-bindsym XF86Calculator		exec $term -e R -q --no-save
+#bindsym XF86Calculator		exec $term -e R -q --no-save
 ##bindsym XF86Sleep		This binding is typically mapped by systemd automatically.
 ##bindsym XF86WakeUp		exec
 bindsym XF86Explorer		exec $term -e ranger
@@ -305,7 +323,6 @@ bindsym XF86AudioRewind		exec --no-startup-id lmc back 10
 bindsym XF86AudioForward	exec --no-startup-id lmc forward 10
 ##bindsym XF86Phone		exec
 ##bindsym XF86Tools		exec
-bindsym XF86HomePage		exec $BROWSER https://lukesmith.xyz
 bindsym XF86Reload		restart
 ##bindsym XF86ScrollUp		exec
 ##bindsym XF86ScrollDown		exec
@@ -348,25 +365,4 @@ bindsym XF86Documents		exec $term -e ranger ~/Documents
 bindsym XF86WLAN		exec $netrefresh
 
 
-
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="bubble"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [window_role="Preferences"] floating enable
-
-for_window [window_type="dialog"] floating enable
-for_window [window_type="menu"] floating enable
-
-for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down $height px
-for_window [class="(?i)qemu-system"] floating enable
-for_window [class="(?i)VirtualBox" title="(?i)Manager"] floating enable
-for_window [class="(?i)VirtualBox"] floating enable
-for_window [class="(?i)blueman"] floating enable
-for_window [class="(?i)pinentry"] floating enable
-for_window [class="(?i)nm-connection-editor"] floating enable
-
-for_window [instance="__nmtui"] floating enable
-
-for_window [class="(?i)pavucontrol"] floating enable, move position mouse
-for_window [class="(?i)pavucontrol" instance="pavucontrol-bar"] move down $height px
 

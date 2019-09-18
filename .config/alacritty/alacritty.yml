@@ -17,9 +17,9 @@ window:
   #
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
-  dimensions:
-    columns: 80
-    lines: 25
+  #dimensions:
+    #columns: 80
+    #lines: 25
 
   # Window position (changes require restart)
   #
@@ -114,29 +114,29 @@ font:
     style: Regular
 
   # Bold font face
-  #bold:
+  bold:
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: monospace
 
     # The `style` can be specified to pick a specific face.
     #style: Bold
 
   # Italic font face
-  #italic:
+  italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: monospace
 
     # The `style` can be specified to pick a specific face.
-    #style: Italic
+    style: Italic
 
   # Point size
-  size: 9.0
+  size: 8.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -168,14 +168,14 @@ font:
   use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+#draw_bold_text_with_bright_colors: true
 
 # Colors (Tomorrow Night Bright)
 colors:
   # Default colors
   primary:
     background: '0x000000'
-    foreground: '0xeaeaea'
+    foreground: '0xaaaaaa'
 
     # Bright and dim foreground colors
     #
@@ -191,7 +191,7 @@ colors:
   # the cursor color will be the inverse of the cell color.
   #cursor:
   #  text: '0x000000'
-  #  cursor: '0xffffff'
+  #  cursor: '0xaaaaaa'
 
   # Selection colors
   #
@@ -204,14 +204,14 @@ colors:
 
   # Normal colors
   normal:
-    black:   '0x000000'
-    red:     '0xbf4040'
+    black:   '0x656863'
+    red:     '0xcc0000'
     green:   '0x4e9a06'
-    yellow:  '0xd6d700'
-    blue:    '0x365eed'
-    magenta: '0x8113c1'
+    yellow:  '0xedd400'
+    blue:    '0x3e7ad8'
+    magenta: '0xa434b6'
     cyan:    '0x06989a'
-    white:   '0xd3d7cf'
+    white:   '0xeeeeec'
 
   # Bright colors
   bright:
@@ -234,7 +234,8 @@ colors:
   #  green:   '0x7a8530'
   #  yellow:  '0x97822e'
   #  blue:    '0x506d8f'
-  #  magenta: '0x80638e'
+  #
+    #magenta: '0xa434b6'
   #  cyan:    '0x497e7a'
   #  white:   '0x9a9a9a'
 
@@ -278,7 +279,7 @@ visual_bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+background_opacity: 0.91
 
 # Mouse bindings
 #

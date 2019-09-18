@@ -442,7 +442,7 @@ PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 ZSH_DISABLE_COMPINIT=true
 export ZSH_DISABLE_COMPINIT
 export TERM=tmux-256color
-export TERMINAL=terminator
+export TERMINAL=alacritty
 export EDITOR="vim"
 export GOPATH=$HOME/go
 export BROWSER="firefox"
