@@ -4,13 +4,8 @@
 
 ![screenshot2](screenshot2.png)
 
-**NOTE**:
-```
-the [.zshrc] designed for arch linux
-if you use other linux distro or OSX just remove PACMAN ALIASES section
-and all wil be fine
-if you use zsh you must have oh-my-zsh installed
-```
+
+--**__OS used is archlinux with i3-gabs__**--
 
 ### LICENSE (public domain)
 ```
