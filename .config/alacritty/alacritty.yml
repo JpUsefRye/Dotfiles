@@ -17,9 +17,9 @@ window:
   #
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
-  #dimensions:
-    #columns: 80
-    #lines: 25
+  dimensions:
+    columns: 80
+    lines: 25
 
   # Window position (changes require restart)
   #
@@ -122,7 +122,7 @@ font:
     family: monospace
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold
+    style: Bold
 
   # Italic font face
   italic:
@@ -170,6 +170,7 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: true
 
+
 # Colors (Tomorrow Night Bright)
 colors:
   # Default colors
@@ -204,7 +205,7 @@ colors:
 
   # Normal colors
   normal:
-    black:   '0x656863'
+    black:   '0x000000'
     red:     '0xcc0000'
     green:   '0x4e9a06'
     yellow:  '0xedd400'
@@ -215,7 +216,7 @@ colors:
 
   # Bright colors
   bright:
-    black:   '0x555753'
+    black:   '0x000000'
     red:     '0xef2929'
     green:   '0x8ae234'
     yellow:  '0xfce94f'
