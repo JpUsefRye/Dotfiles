@@ -1,8 +1,6 @@
  My Personal Dotfiles
 
-![screenshot1](screenshot1.png)
-
-![screenshot2](screenshot2.png)
+![screenshot](screenshot.png)
 
 
 --**__OS used is archlinux with i3-gabs__**--
