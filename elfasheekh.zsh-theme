@@ -1,4 +1,4 @@
-PROMPT=$'%{$fg[red]%}[%{$reset_color%}%m%{$reset_color%}%{$reset_color%}%{$fg[red]%}][%{$fg[green]%}%1d%{$reset_color%}%{$fg[red]%}]> %{$(git_prompt_info)%}%(?,,%{$fg[red]%}[%{$fg_bold[white]%}%?%{$reset_color%}%{$fg[red]%}])
+PROMPT=$'%{$fg[red]%}[%{$reset_color%}%m%{$reset_color%}%{$reset_color%}%{$fg[red]%}][%{$fg[cyan]%}%~%{$reset_color%}%{$fg[red]%}]> %{$(git_prompt_info)%}%(?,,%{$fg[red]%}[%{$fg_bold[white]%}%?%{$reset_color%}%{$fg[red]%}])
 %{$fg_bold[yellow]%}$%{$reset_color%} '
 PS2=$' %{$fg[green]%}|>%{$reset_color%} '
 

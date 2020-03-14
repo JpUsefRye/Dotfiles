@@ -1,8 +1,10 @@
 # I3 Configuration
 
 for_window [class="^.*"] border pixel 2
+
 #gaps inner 15
 #gaps outer 15
+
 set $term --no-startup-id alacritty
 set $mod Mod4
 set $stoprec --no-startup-id ~/.scripts/i3cmds/dmenurecord kill
@@ -42,28 +44,31 @@ for_window [instance="__nmtui"] floating enable
 for_window [class="(?i)pavucontrol"] floating enable, move position mouse
 for_window [class="(?i)pavucontrol" instance="pavucontrol-bar"] move down $height px
 
+exec_always --no-startup-id dunst
+exec_always --no-startup-id mpd
 
+# Keyboard Layout and Mouse Layout
+#
+# toggle nnatural scrolling
+exec_always xinput --no-startup-id --set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
+# toggle tab to click
+xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
+# Alt shift to toggle arabic or english
+exec_always --no-startup-id setxkbmap -layout us,ar
+exec_always --no-startup-id setxkbmap -option 'grp:alt_shift_toggle'
 
 # #---Starting External Scripts---# #
+
+smart_borders on
+
 # Setting the background:
-exec always feh --bg-scale ~/Pictures/Wallpapers/wall.jpg
-exec always compton
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
+exec_always feh --bg-scale ~/Pictures/Wallpapers/wallpaper.jpg
+# compositor
+exec_always --no-startup-id picom
+
+# font or whatever
 font pango:Hack
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
-
-# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
@@ -74,12 +79,8 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Shift+d exec rofi -show drun -theme ~/.config/rofi/themes/apps.rasi
 
-# change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
@@ -115,12 +116,6 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+t layout toggle split
 
-# fast resize
-bindsym $mod+Shift+y		exec --no-startup-id ~/.scripts/i3cmds/i3resize left
-bindsym $mod+Shift+u		exec --no-startup-id ~/.scripts/i3cmds/i3resize down
-bindsym $mod+Shift+i		exec --no-startup-id ~/.scripts/i3cmds/i3resize up
-bindsym $mod+Shift+o		exec --no-startup-id ~/.scripts/i3cmds/i3resize right
-
 bindsym $mod+o			sticky toggle
 
 # toggle tiling / floating
@@ -132,12 +127,6 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
-
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-
 set $ws1  "1:  "
 set $ws2  "2:  "
 set $ws3  "3:  "
@@ -146,7 +135,7 @@ set $ws5  "5:  "
 set $ws6  "6:  "
 set $ws7  "7:  "
 set $ws8  "8: "
-set $ws9  "9"
+set $ws9  "9 ☁"
 set $ws10 "10:  "
 
 # switch to workspace
@@ -187,7 +176,6 @@ bindsym $mod+Shift+m exec --no-startup-id $term -e ncmpcpp
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
@@ -196,6 +184,11 @@ mode "resize" {
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -288,9 +281,9 @@ bindsym $mod+F11       exec --no-startup-id ~/.scripts/i3cmds/ducksearch
 
 
 # change volume or toggle mute
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%-
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle
 
 bindsym XF86PowerOff		exec prompt "Shutdown computer?" "$shutdown"
 ##bindsym XF86Copy		exec
