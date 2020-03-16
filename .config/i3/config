@@ -52,7 +52,7 @@ exec_always --no-startup-id mpd
 # toggle nnatural scrolling
 exec_always xinput --no-startup-id --set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
 # toggle tab to click
-xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
+exec_always xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
 # Alt shift to toggle arabic or english
 exec_always --no-startup-id setxkbmap -layout us,ar
 exec_always --no-startup-id setxkbmap -option 'grp:alt_shift_toggle'
@@ -62,7 +62,7 @@ exec_always --no-startup-id setxkbmap -option 'grp:alt_shift_toggle'
 smart_borders on
 
 # Setting the background:
-exec_always feh --bg-scale ~/Pictures/Wallpapers/wallpaper.jpg
+exec_always feh --bg-scale ~/Pictures/wallpapers/wallpaper.jpg
 # compositor
 exec_always --no-startup-id picom
 
