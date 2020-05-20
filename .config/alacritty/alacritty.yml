@@ -84,7 +84,7 @@ scrolling:
   # to allow mouse scrolling for applications like `man`.
   #
   # Specifying `0` will disable faux scrolling.
-  faux_multiplier: 3
+  #faux_multiplier: 3
 
   # Scroll to the bottom when new text is written to the terminal.
   auto_scroll: false
@@ -171,11 +171,10 @@ font:
 #draw_bold_text_with_bright_colors: true
 
 
-# Colors (Tomorrow Night Bright)
 colors:
   # Default colors
   primary:
-    background: '0x000000'
+    background: '0x121415'
     foreground: '0xaaaaaa'
 
     # Bright and dim foreground colors
@@ -205,22 +204,22 @@ colors:
 
   # Normal colors
   normal:
-    black:   '0x000000'
+    black:   '0x121415'
     red:     '0xcc0000'
     green:   '0x4e9a06'
-    yellow:  '0xedd400'
-    blue:    '0x3e7ad8'
-    magenta: '0xa434b6'
+    yellow:  '0xc4a000'
+    blue:    '0x3465a4'
+    magenta: '0x75507b'
     cyan:    '0x06989a'
-    white:   '0xeeeeec'
+    white:   '0xd3d7cf'
 
   # Bright colors
   bright:
-    black:   '0x000000'
+    black:   '0x8B8B8B'
     red:     '0xef2929'
     green:   '0x8ae234'
     yellow:  '0xfce94f'
-    blue:    '0x4d6ce8'
+    blue:    '0x729fcf'
     magenta: '0xad7fa8'
     cyan:    '0x34e2e2'
     white:   '0xeeeeec'
@@ -230,15 +229,15 @@ colors:
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
   #dim:
-  #  black:   '0x000000'
-  #  red:     '0x8c3336'
-  #  green:   '0x7a8530'
-  #  yellow:  '0x97822e'
-  #  blue:    '0x506d8f'
-  #
+    #black:   '0x000000'
+    #red:     '0x8c3336'
+    #green:   '0x7a8530'
+    #yellow:  '0x97822e'
+    #blue:    '0x506d8f'
+
     #magenta: '0xa434b6'
-  #  cyan:    '0x497e7a'
-  #  white:   '0x9a9a9a'
+    #cyan:    '0x497e7a'
+    #white:   '0x9a9a9a'
 
   # Indexed Colors
   #
@@ -280,7 +279,7 @@ visual_bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.91
+background_opacity: 0.95
 
 # Mouse bindings
 #

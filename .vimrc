@@ -2,6 +2,7 @@ set nocompatible                " i don't know what is that doing but it works w
 set encoding=utf-8              " Set default encoding to UTF-8
 set background=dark
 
+
 syntax on                       " Enable syntax
 filetype plugin indent on       " Enable indenting
 filetype plugin on
@@ -55,13 +56,7 @@ set autoread
 set wildmode=longest,list,full
 " I DON'T UNDERSTAND VIM SCRIPT
 
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-endif
-
-if $COLORTERM == 'truecolor'
-    set t_Co=256
-endif
+set t_Co=256
 
 
 "inoremap " ""<left>
@@ -121,15 +116,6 @@ function! Smart_TabComplete()
   endif
 endfunction
 
-function! Repeat()
-    let times = input("Count: ")
-    let char  = input("Char: ")
-    exe ":normal a" . repeat(char, times)
-endfunction
-
-imap <C-u> <C-o>:call Repeat()<cr>
-
-
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -181,6 +167,7 @@ au FileType python set cindent
 au FileType python set cinkeys-=0#
 au FileType python set indentkeys-=0#
 
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'https://github.com/terryma/vim-multiple-cursors'
@@ -188,12 +175,16 @@ Plug 'https://github.com/RRethy/vim-illuminate'
 Plug 'https://github.com/scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
+Plug 'arcticicestudio/nord-vim'
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
 highlight pythonSpaceError ctermfg=0
 highlight Normal ctermfg=white
 highlight Comment ctermfg=green
+
+colorscheme nord
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'

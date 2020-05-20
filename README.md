@@ -1,9 +1,9 @@
  My Personal Dotfiles
 
 ![screenshot](screenshot.png)
+![screenshot2](screenshot2.png)
 
-
---**__OS used is archlinux with i3-gabs__**--
+--**__OS used is archlinux with BSPWM as a window manager__**--
 
 ### LICENSE (public domain)
 ```

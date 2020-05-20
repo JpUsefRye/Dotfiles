@@ -325,6 +325,7 @@ fi
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 PATH="$HOME/.node_modules/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.scripts/bspwm_resize:$PATH"
 PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
@@ -335,7 +336,7 @@ export ZSH_DISABLE_COMPINIT
 export TERM=tmux-256color
 export TERMINAL=alacritty
 export EDITOR="vim"
-export GOPATH=$HOME/go
+export GOPATH=$HOME/go/
 export BROWSER="firefox"
 export CC=gcc
 export AS=as
