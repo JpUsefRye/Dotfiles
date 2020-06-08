@@ -15,124 +15,17 @@ if command -v tmux &> /dev/null && [ -n "$PROMPT" ] && [[ ! "$TERM" =~ screen ]]
     exec tmux
 fi
 
-# Aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-fi
-
-##########################################################
-# Comment PACMAN ALIASES if you are not using arch linux #
-##########################################################
-
-# PACMAN ALIASES
-alias pacupg='pacman -Syu' # Synchronize with repositories and then upgrade packages that are out of date
-alias pacupd='pacman -Sy'  # Refresh of all package lists after updating /etc/pacman.d/mirrorlist
-alias pacin='pacman -S'    # Install specific package(s) from the repositories
-alias pacinu='pacman -U'   # Install specific local package(s)
-alias pacre='pacman -R'    # Remove the specified package(s), retaining its configuration(s) and required dependencies
-alias pacun='pacman -Rcsn' # Remove the specified package(s), its configuration(s) and unneeded dependencies
-alias pacinfo='pacman -Si' # Display information about a given package in the repositories
-alias pacse='pacman -Ss'   # Search for package(s) in the repositories
-
-alias pacupa='pacman -Sy && sudo abs' # Update and refresh the local package and ABS databases against repositories
-alias pacind='pacman -S --asdeps'     # Install given package(s) as dependencies of another package
-alias pacclean="pacman -Sc"           # Delete all not currently installed package files
-alias pacmake="makepkg -fcsi"         # Make package from PKGBUILD file in current directory
-# END PACMAN ALIASES
-
-# CD ALIASES
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
-# END CD ALIASES
-
-# Some usefull aliases for sysadmin stuff
-alias nse="ls /usr/share/nmap/scripts/|grep "
-alias glog="git log --color --all --date-order --decorate --dirstat=lines,cumulative --stat|less -R"
-
-# AUTOCOLOR
 alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-# END AUTOCOLOR
-
-# LS STUFF
 alias ls="ls --color=auto"
-alias ll="ls -l"
-alias lr='ls -R'
-alias la='ll -A'
-alias lx='ls -lXB'         # Sort by extension
-alias lk='ls -lSr'         # Sort by size, biggest last
-alias lc='ls -ltcr'        # Sort by and show change time, most recent last
-alias lu='ls -ltur'        # Sort by and show access time, most recent last
-alias lt='ls -ltr'         # Sort by date, most recent last
-# END LS STUFF
-
-# LOL
-alias dmesg="dmesg --color=always"
-alias wtf='dmesg'
-alias onoz='cat /var/log/errors.log'
-alias rtfm='man'
-
-alias :3='echo'
-alias visible='echo'
-alias invisible='cat'
-alias moar='more'
-alias alwayz='tail -f'
-
-alias icanhas='mkdir'
-alias gimmeh='touch'
-alias donotwant='rm'
-alias dowant='cp'
-alias gtfo='mv'
-alias nowai='chmod'
-
-alias hai='cd'
-alias iz='ls'
-alias plz='pwd'
-alias ihasbucket='df -h'
-
-alias inur='locate'
-alias iminurbase='finger'
-
-alias btw='nice'
-alias obtw='nohup'
-
-alias nomz='ps aux'
-alias nomnom='killall'
-
-alias byes='exit'
-alias cya='reboot'
-alias kthxbai='halt'
-
-alias pwned='ssh'
-
-alias hackzor='git init'
-alias rulz='git push'
-alias bringz='git pull'
-alias chicken='git add'
-alias oanward='git commit -m'
-alias ooanward='git commit -am'
-alias yolo='git commit -m "small fix or refactoring"'
-alias letcat='git checkout'
-alias violenz='git rebase'
-# END LOL
-
-# MODIFIED COMMANDS
-alias df='df -h'
-alias du='du -c -h'
-alias free='free -m'                # show sizes in MB
-# END MODIFIED COMMANDS
-
 alias vi="vim"
 alias open="xdg-open"
-alias less="less -R"
 alias fuckmylife=":(){ :|: & };:" # do not fuck your life
+
+alias nse="ls /usr/share/nmap/scripts/|grep "
+alias glog="git log --color --all --date-order --decorate --dirstat=lines,cumulative --stat|less -R"
 
 # Vim every where
 function :q() {
@@ -206,13 +99,6 @@ function gifconverter(){
     convert -loop 0 ${FOLDER}/ffout*.png ${OUTPUT}
 }
 
-# Misc
-function shrainbow(){
-    (seq 231 -1 16) | while read i; do
-        printf "\x1b[48;5;${i}m\n";
-        sleep .02;
-    done;
-}
 
 #--- Terminal Interface ---#
 # figlet -f ~/.fonts/Modular.flf "${MYNAME}\n"
@@ -313,8 +199,8 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=black,bold'
 ZSH_HIGHLIGHT_STYLES[named-fd]='none'
 ZSH_HIGHLIGHT_STYLES[arg0]='none'
 
-if [ -f ~/.zcompdump-$HOST-5.6.2 ]; then
-    rm ~/.zcompdump-$HOST-5.6.2
+if [ -f ~/.zcompdump-$HOST-* ]; then
+    rm ~/.zcompdump-$HOST-*
 fi
 
 if [ -f ~/.zcompdump ]; then
@@ -327,13 +213,16 @@ PATH="$HOME/.node_modules/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.scripts/bspwm_resize:$PATH"
 PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
+
 PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
+
 ZSH_DISABLE_COMPINIT=true
+
 export ZSH_DISABLE_COMPINIT
-export TERM=tmux-256color
+export TERM=xterm-256color
 export TERMINAL=alacritty
 export EDITOR="vim"
 export GOPATH=$HOME/go/
@@ -350,6 +239,4 @@ export QT_X11_NO_MITSHM=1 # fixes the issue when opening qt app with sudo
 export PATH="$PATH:$HOME/go/bin"
 export npm_config_prefix=~/.node_modules
 export GEM_HOME=$HOME/.gem
-export PATH=/usr/lib/jvm/java-8-openjdk/jre/bin/:$PATH
-export ARCHFLAGS="-arch x86_64"
 export PROMPT
