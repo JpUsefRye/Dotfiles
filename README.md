@@ -1,7 +1,11 @@
  My Personal Dotfiles
 
+#### bspwm
 ![screenshot](screenshot.png)
 ![screenshot2](screenshot2.png)
+
+### dwm
+![screenshot3](screenshot3.png)
 
 --**__OS used is archlinux with BSPWM as a window manager__**--
 
