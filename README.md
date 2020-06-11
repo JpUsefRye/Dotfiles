@@ -7,6 +7,8 @@
 ### dwm
 ![screenshot3](screenshot3.png)
 
+My dwm files are found in [another repo](https://github.com/M1cR0xf7/dwm/).
+
 --**__OS used is archlinux with BSPWM as a window manager__**--
 
 ### LICENSE (public domain)
