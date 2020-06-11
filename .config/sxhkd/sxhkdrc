@@ -31,7 +31,13 @@ super + shift + m
 
 # Take a screenshot
 @Print
-    scrot '%Y-%m-%d_%H%-M-%S-$wx$h.png'
+    scrot
+
+shift + @Print
+    scrot -u
+
+alt + @Print
+    sleep 1 && scrot -s
 
 # volume control settings
 @XF86AudioRaiseVolume

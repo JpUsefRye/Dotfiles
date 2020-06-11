@@ -31,7 +31,7 @@ alert = #bd2c40
 ;monitor = ${env:MONITOR:HDMI-1}
 wm-restack = bspwm
 width = 100%
-height = 18
+height = 17
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 1.0
@@ -60,7 +60,7 @@ separator = |
 
 modules-left = bspwm i3
 modules-center = title
-modules-right = mpd xbacklight alsa xkeyboard wlan eth date time powermenu
+modules-right = mpd xbacklight alsa xkeyboard wlan eth date time battery powermenu
 
 tray-position = right
 tray-padding = 2
@@ -186,8 +186,8 @@ label-song-ellipsis = true
 [module/xbacklight]
 type = internal/xbacklight
 
-format = <label> <bar>
-label = BL
+format = <label>
+label = 
 
 bar-width = 10
 bar-indicator = |
@@ -259,24 +259,21 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-[module/time]
-type = internal/date
-interval = 1
-
-time = %H:%M
-label =  %time%
-
 [module/date]
 type = internal/date
 interval = 5
 
-date = %Y-%m-%d
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
 
 format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
+;format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = #0a6cf5
 
-label =  %date%
+label =  %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -340,14 +337,14 @@ adapter = ACAD
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+;format-charging-underline = #ffb52a
 
 format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+;format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
+;format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
