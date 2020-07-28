@@ -54,6 +54,7 @@ set autowrite                   " Automatically :w before running commands
 set showmode                    " show current mode down the bottom
 set autoread
 set wildmode=longest,list,full
+set wildmenu
 set t_Co=256
 
 filetype on                     " Enable file type detection
@@ -142,7 +143,6 @@ au FileType python map <buffer> <leader>D ?def
 
 " Here is my plugins
 call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/terryma/vim-multiple-cursors'
 Plug 'https://github.com/RRethy/vim-illuminate'
 Plug 'https://github.com/scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -153,11 +153,12 @@ call plug#end()
 "highlight pythonSpaceError ctermfg=0
 "highlight Normal ctermfg=white
 "highlight Comment ctermfg=green
-"
+
 colorscheme gruvbox
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_z = '%3p%% %#__accent_bold#%{g:airline_symbols.linenr}%4l%#__restore__#%#__accent_bold#/%L%#__restore__# :%3v'
 let g:NERDCustomDelimiters = { 'c': { 'left': '/* ','right': ' */' } }
-let g:cpp_no_function_highlight = 1
+"let g:cpp_no_function_highlight = 1
+let c_no_curly_error=1

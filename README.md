@@ -1,6 +1,7 @@
  My Personal Dotfiles
 
 #### bspwm
+![screenshot4](screenshot4.png)
 ![screenshot](screenshot.png)
 ![screenshot2](screenshot2.png)
 

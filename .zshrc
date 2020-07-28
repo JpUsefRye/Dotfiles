@@ -5,15 +5,16 @@ ZSH_THEME="elfasheekh"
 
 LANG=en_US.UTF-8
 MYNAME=${USER}                  # replace this with your name
-RESOLUTION=1366x768             # replace this with your display size (for ffmpeg)
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 # TMUX shit here
-if command -v tmux &> /dev/null && [ -n "$PROMPT" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-    exec tmux
-fi
+#if command -v tmux &> /dev/null && [ -n "$PROMPT" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+    #exec tmux
+#fi
+
+alias help="echo help yourself"
 
 alias dir='dir --color=auto'
 alias grep='grep --color=auto'
@@ -29,10 +30,6 @@ alias glog="git log --color --all --date-order --decorate --dirstat=lines,cumula
 
 # Vim every where
 function :q() {
-    exit 0
-}
-
-function q() {
     exit 0
 }
 
@@ -160,14 +157,14 @@ plugins=(
 # ===== Auto correction
 setopt always_to_end # When completing from the middle of a word, move the cursor to the end of the word
 setopt auto_menu # show completion menu on successive tab press. needs unsetop menu_complete to work
-setopt auto_name_dirs # any parameter that is set to the absolute name of a directory immediately becomes a name for that directory
+#setopt auto_name_dirs # any parameter that is set to the absolute name of a directory immediately becomes a name for that directory
 setopt complete_in_word # Allow completion from within a word/phrase
 
 unsetopt menu_complete # do not autoselect the first completion entry
 
 # ===== Correction
-unsetopt correct_all # spelling correction for arguments
-setopt correct # spelling correction for commands
+#unsetopt correct_all # spelling correction for arguments
+#setopt correct # spelling correction for commands
 
 # Sources
 source $ZSH/oh-my-zsh.sh
@@ -199,13 +196,13 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=black,bold'
 ZSH_HIGHLIGHT_STYLES[named-fd]='none'
 ZSH_HIGHLIGHT_STYLES[arg0]='none'
 
-if [ -f ~/.zcompdump-$HOST-* ]; then
-    rm ~/.zcompdump-$HOST-*
-fi
+#if [ -f ~/.zcompdump-$HOST-* ]; then
+    #rm ~/.zcompdump-$HOST-*
+#fi
 
-if [ -f ~/.zcompdump ]; then
-    rm ~/.zcompdump
-fi
+#if [ -f ~/.zcompdump ]; then
+    #rm ~/.zcompdump
+#fi
 
 # Some PATH Variables and exports
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
